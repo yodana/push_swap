@@ -1,6 +1,6 @@
 NAME = checker
 
-SRC = main_checker.c init.c moves.c 
+SRC = main_checker.c init.c moves.c display.c moves_s.c
 
 HEADER = checker.h
 

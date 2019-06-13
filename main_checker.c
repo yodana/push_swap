@@ -8,8 +8,8 @@ int     main(int argc, char **argv)
 
     if (argc == 0)
         return (0);
-    init(&res, argv, argc);
-    if((mv = ft_get_txt(0)) != NULL)
+    init(&res, argv, argc - 1);
+    while ((mv = ft_get_txt(0)) != NULL)
     {
          check_move(&res, mv);
     }
