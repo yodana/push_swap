@@ -9,7 +9,7 @@ int     main(int argc, char **argv)
     if (argc == 0)
         return (0);
     init(&res, argv, argc);
-    while ((mv = ft_get_txt(0)) != NULL)
+    if((mv = ft_get_txt(0)) != NULL)
     {
          check_move(&res, mv);
     }

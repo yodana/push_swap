@@ -8,6 +8,7 @@ t_pile  *init_pile_b(int size)
         return (NULL);
     if (!(b->numbers = (int*)malloc(sizeof(int) * size)))
         return (NULL);
+    b->size = size;
     return (b);
 }
 
@@ -29,6 +30,7 @@ t_pile  *init_pile_a(char **numbers, int size)
         i++;
         j++;
     }
+    a->size = size;
     return (a);
 }
 
