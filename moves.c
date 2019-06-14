@@ -6,6 +6,12 @@ static const t_moves    g_moves[] = {
         {"sb", move_sb},
         {"ss", move_ss},
         {"pa", move_pa},
+        {"pb", move_pb},
+        {"ra", move_ra},
+        {"rb", move_rb},
+        {"rr", move_rr},
+        {"rra", move_rra},
+        {"rrb", move_rrb},
         {NULL, NULL}
 };
 
