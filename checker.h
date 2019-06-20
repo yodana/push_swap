@@ -2,6 +2,7 @@
 # define CHECKER_H
 #include "libft/libft.h"
 
+# define INT_MAX "2147483647"
 typedef struct s_pile
 {
     int *numbers;
@@ -36,4 +37,6 @@ int     init(t_all *res, char **numbers, int size);
 int     check_move(t_all *res, char *mv);
 void    ft_affichage(t_all *res, t_pile *a, t_pile *b);
 int     check_win(t_pile *a, t_pile *b);
+int     check(char **argv);
+int     check_double(t_pile *a);
 #endif

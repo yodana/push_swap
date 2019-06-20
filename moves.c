@@ -23,9 +23,12 @@ int     check_move(t_all *res, char *mv)
     while (g_moves[i].type)
     {
         if (ft_strcmp(mv, (const char*)g_moves[i].type) == 0)
+        {
             g_moves[i].move(res->a, res->b);
+            ft_affichage(res, res->a, res->b);
+            return (1);
+        }
         i++;
     }
-    ft_affichage(res, res->a, res->b);
-    return (1);
+    return (-1);
 }
