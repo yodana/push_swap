@@ -14,7 +14,7 @@ int     main(int argc, char **argv)
     if (argc == 0)
         return (0);
     init(&res, argv, argc - 1);
-    if (check(argv) == -1) //|| check_double(res.a) == -1)
+    if (check(argv) == -1 || check_double(res.a) == -1)
     {
         ft_error();
         return (0);
