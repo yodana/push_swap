@@ -14,7 +14,12 @@ SRC = ft_bzero.c ft_putstr.c ft_putchar.c ft_putendl.c ft_putnbr.c ft_strnew.c \
 	ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_abs.c ft_isspace.c \
 	ft_strrev_fr.c ft_lstcount.c ft_printlst.c ft_isblank.c ft_printcolor.c \
 	ft_strjoin.c ft_sqrt.c get_next_line.c ft_strjoin_fr.c ft_strrdel.c \
-	ft_power.c ft_dtoa.c ft_strsub_fr.c ft_itoa_u.c ft_get_txt.c
+	ft_power.c ft_dtoa.c ft_strsub_fr.c ft_itoa_u.c ft_get_txt.c \
+	ft_attribut.c ft_calc_bi.c ft_calc_float.c \
+	ft_conv.c ft_conv_char.c ft_conv_f.c \
+	ft_lst.c ft_printf.c ft_calc.c ft_calc_exposant.c \
+	ft_check.c ft_conv_b.c ft_conv_e.c ft_conv_spe.c \
+	ft_prec_champ.c norme.c 
 
 HEADER = libft.h
 
@@ -38,7 +43,7 @@ $(NAME): bin  $(OBJ)
 	@printf "$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
 
 $(BIN_FOLDER)%.o :%.c
-	@gcc $< -c -I $(HEADER) -o $@ -Wall -Wextra -Werror 
+	@gcc $< -c -I $(HEADER) -o $@ -Wall -Wextra -Werror
 	@printf "$(YELLOW) Compiling:$(END_COLOR) $<  $(GREEN)[OK] $(END_COLOR)              \r"
 
 clean: 

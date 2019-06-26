@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-
+# include "printf.h"
 # define END_COLOR	"\033[0m"
 # define YELLOW		"\033[0;33m"
 # define GREEN		"\033[0;32m"
@@ -107,4 +107,5 @@ double			ft_power(double nbr, double power);
 char			*ft_strsub_fr(char const *s, unsigned int start, size_t len);
 char			*ft_itoa_u(long long nbr);
 char			*ft_get_txt(int fd);
+
 #endif

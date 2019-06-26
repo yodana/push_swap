@@ -5,9 +5,10 @@ NAME2 = push_swap
 SRC1 = main_checker.c init.c moves.c display.c moves_s.c moves_p.c \
 		moves_r.c moves_rr.c check.c
 
-SRC2 = main_push.c check.c
+SRC2 = main_push.c check.c algo.c init.c moves_p.c  display.c moves_r.c \
+	moves_s.c
 
-HEADER = checker.h  
+HEADER = checker.h
 
 HEADER1 = push_swap.h
 
@@ -25,7 +26,7 @@ OBJ1 = $(addprefix $(BIN_FOLDER),$(SRC1:.c=.o))
 
 OBJ2 = $(addprefix $(BIN_FOLDER1),$(SRC2:.c=.o))
 
-LIB = libft/libft.a
+LIB = libft/libft.a 
 
 FLAGS = -Wall -Wextra -Werror
 

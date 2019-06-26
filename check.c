@@ -37,7 +37,7 @@ int     check_double(t_pile *a)
     }
     return (1);
 }
-#include <stdio.h>
+
 int     check(char **argv)
 {
     int i;

@@ -1,5 +1,4 @@
 #include "checker.h"
-#include <stdio.h>
 
 void    move_s(t_pile *target)
 {

@@ -1,5 +1,4 @@
 #include "checker.h"
-#include <stdio.h>
 
 void    ft_error()
 {
@@ -27,6 +26,6 @@ int     main(int argc, char **argv)
             return (0);
         }
     }
-    check_win(res.a, res.b) == 1 ? ft_putstr("OK\n") : ft_putstr("KO\n");
+    check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
     return (0);
 }
