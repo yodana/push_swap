@@ -14,6 +14,8 @@ typedef struct s_all
 {
     t_pile *a;
     t_pile *b;
+    t_pile *pa;
+    t_pile *pb;
     int size;
 
 }         t_all;
@@ -25,9 +27,9 @@ typedef struct s_moves
 }               t_moves;
 
 int     init(t_all *res, char **numbers, int size);
-void    algo_go(t_pile *a, t_pile *b, int *mv);
+void    algo_go(t_all *res, int *mv);
 int     move_pb(t_pile *a, t_pile *b);
-void    ft_affichage(t_all *res, t_pile *a, t_pile *b);
+void    ft_affichage(t_all *res);
 int     move_ra(t_pile *a, t_pile *b);
 int     move_rb(t_pile *a, t_pile *b);
 int     move_pa(t_pile *a, t_pile *b);

@@ -8,11 +8,10 @@ int     main(int argc, char **argv)
     if (argc == 0)
         return (0);
     init(&res, argv, argc - 1);
-    ft_printf("argv[1] == %s\n",argv[1]);
-    while (check_win(res.a, res.b) == -1)
+    while (mv < 1)//check_win(res.a, res.b) == -1)
     {
-        algo_go(res.a, res.b, &mv);
-        ft_affichage(&res,res.a, res.b);
+        algo_go(&res, &mv);
+        ft_affichage(&res);
     }
     ft_printf("mv == %d\n", mv);
     return (0);

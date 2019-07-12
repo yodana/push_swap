@@ -13,6 +13,8 @@ typedef struct s_all
 {
     t_pile *a;
     t_pile *b;
+    t_pile *pa;
+    t_pile *pb;
     int size;
 
 }         t_all;
@@ -35,7 +37,7 @@ int     move_rra(t_pile *a, t_pile *b);
 int     move_rrb(t_pile *a, t_pile *b);
 int     init(t_all *res, char **numbers, int size);
 int     check_move(t_all *res, char *mv);
-void    ft_affichage(t_all *res, t_pile *a, t_pile *b);
+void    ft_affichage(t_all *res);
 int     check_win(t_pile *a, t_pile *b);
 int     check(char **argv);
 int     check_double(t_pile *a);
