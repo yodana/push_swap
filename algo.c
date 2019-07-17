@@ -50,7 +50,7 @@ void        algo_go2(t_all *res, int *mv)
                     *mv = *mv + 1;
                  }
         }
-        else
+        else if (c <= pos)
         {
             move_rb(res->a, res->b);
             *mv = *mv + 1;

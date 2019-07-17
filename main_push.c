@@ -22,18 +22,19 @@ int     main(int argc, char **argv)
     }
     /*while (check_win(res.a, res.b) == -1 && mv < 1000000)
     {
-    mv = 0;
-    while (res.a->size > 1)//check_win(res.a, res.b) == -1)
+    mv = 0;*/
+    /*while (res.a->size > 1)//check_win(res.a, res.b) == -1)
     {
         algo_go3(&res, &mv);
         ft_affichage(&res);
-    }
-    while (res.b->size >= 1)
+    }*/
+    mv = 0;
+    while (mv < 10)//res.b->size >= 1)
     {
         algo_go2(&res, &mv);
         ft_affichage(&res);
     }
-    }*/
+    //}
     ft_printf("mv == %d\n", mv);
     return (0);
 
