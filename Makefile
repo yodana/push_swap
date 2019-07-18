@@ -6,7 +6,7 @@ SRC1 = main_checker.c init.c moves.c display.c moves_s.c moves_p.c \
 		moves_r.c moves_rr.c check.c
 
 SRC2 = main_push.c check.c algo.c init.c moves_p.c  display.c moves_r.c \
-	moves_s.c tools.c
+	moves_s.c tools.c moves_rr.c
 
 HEADER = checker.h
 

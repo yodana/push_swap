@@ -29,6 +29,8 @@ void        algo_go2(t_all *res, int *mv)
     int c;
     int i;
     t_pile *tab_tmp;
+    int c_rb;
+    c_rb = 0;
     ft_printf("NEW \n ");
     tab_tmp = cpy_tab_pile(res->b, res->pb);
     int pos = find_pos_pivot(tab_tmp, 0);
@@ -36,7 +38,7 @@ void        algo_go2(t_all *res, int *mv)
     c = 0;
     i = tab_tmp->size;
     ft_printf("size de la pile  = %d\n",i);
-    ft_printf("pivot ou il faut stop == %d && size == %d\n", res->pb->numbers[res->pb->size - 1], res->pb->size);
+    ft_printf("pivot ou il faut stop == %d && size == %d && pivot == %d\n", res->pb->numbers[res->pb->size - 1], res->pb->size, tab_tmp->numbers[pos]);
     while (c < i)
     {
         //ft_printf("number dans pa == %d \n", tab_tmp[c]);
@@ -50,9 +52,10 @@ void        algo_go2(t_all *res, int *mv)
                     *mv = *mv + 1;
                  }
         }
-        else if (c <= pos)
+        else
         {
             move_rb(res->a, res->b);
+            c_rb++;
             *mv = *mv + 1;
         }
          ft_printf("mv == %d\n", *mv);
@@ -62,7 +65,16 @@ void        algo_go2(t_all *res, int *mv)
     }
     add_pivot(res->pa, tab_tmp->numbers[pos]);
     if (res->pb->size > 0)
-    res->pb->size = res->pb->size - 1;
+        res->pb->size = res->pb->size - 1;
+    if (c_rb != res->b->size)
+    {
+    while (c_rb != 0)
+    {
+        move_rrb(res->a, res->b);
+        *mv = *mv + 1;
+        c_rb--;
+    }
+    }
     //free(tab_tmp);
     //*mv = *mv + 1;
     //ft_printf("tab_pivot == %d\n", res->pa->numbers[*mv]);
@@ -77,11 +89,13 @@ void        algo_go3(t_all *res, int *mv)
     t_pile *tab_tmp;
     
     tab_tmp = cpy_tab_pile(res->a, res->pa);
-    int pos = find_pos_pivot(res->a, 0);
+    int pos = find_pos_pivot(tab_tmp, 0);
+    int c_ra;
+    c_ra = 0;
     ft_printf("pivot == %d\n", tab_tmp->numbers[pos]);
     c = 0;
     i = tab_tmp->size;
-    ft_printf("size d ela pile a = %d\n",i);
+     ft_printf("pivot ou il faut stop == %d && size == %d && pivot == %d\n", res->pa->numbers[res->pa->size - 1], res->pa->size, tab_tmp->numbers[pos]);
     while (c < i)
     {
         //ft_printf("number dans pa == %d \n", tab_tmp[c]);
@@ -99,6 +113,7 @@ void        algo_go3(t_all *res, int *mv)
         else
         {
             move_ra(res->a, res->b);
+            c_ra++;
             *mv = *mv + 1;
         }
         c++;
@@ -106,6 +121,16 @@ void        algo_go3(t_all *res, int *mv)
     add_pivot(res->pb, tab_tmp->numbers[pos]);
     if (res->pa->size > 0)
         res->pa->size = res->pa->size - 1;
+    refaire un tab_cpy jusqu a n pivot puis voir si c en ordre si ca l ai pas on recommence avec le meme n pivot
+    if (c_ra != res->a->size)
+    {
+        while (c_ra != 0)
+        {
+            move_rra(res->a, res->b);
+            *mv = *mv + 1;
+            c_ra--;
+        }
+    }
     //ft_printf("tab_pivot == %d\n", res->pb->numbers[*mv]);
 }
 void        algo_go(t_all *res, int *mv)

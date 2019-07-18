@@ -29,12 +29,24 @@ int     main(int argc, char **argv)
         ft_affichage(&res);
     }*/
     mv = 0;
-    while (mv < 10)//res.b->size >= 1)
+    while (check_tab(res.a) == 1)//res.b->size >= 1)
     {
         algo_go2(&res, &mv);
         ft_affichage(&res);
     }
     //}
+    mv = 0;
+    while (mv < res.pa->size)
+    {
+          ft_printf("tableau pa == %d\n", res.pa->numbers[mv]);
+        mv++;
+    }
+    mv = 0;
+    while (mv < 1)
+    {
+        algo_go3(&res, &mv);
+        ft_affichage(&res);
+    }
     ft_printf("mv == %d\n", mv);
     return (0);
 

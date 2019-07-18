@@ -1,5 +1,19 @@
 #include "checker.h"
 
+int     check_tab(t_pile *target)
+{
+    int i;
+
+    i = 0;
+    while (i + 1 < target->size)
+    {
+        if (target->numbers[i] > target->numbers[i + 1])
+            return (-1);
+        i++;
+    }
+    return (1);
+}
+
 int     check_win(t_pile *a, t_pile *b)
 {
     int i;
