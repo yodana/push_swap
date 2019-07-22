@@ -27,7 +27,7 @@ typedef struct s_moves
 }               t_moves;
 
 int     init(t_all *res, char **numbers, int size);
-void    algo_go(t_all *res, int *mv);
+void    algo_go(t_all *res, int use, int *mv);
 int     move_pb(t_pile *a, t_pile *b);
 void    ft_affichage(t_all *res);
 int     move_ra(t_pile *a, t_pile *b);
@@ -43,4 +43,8 @@ t_pile *cpy_tab_pile(t_pile *a, t_pile *pa);
 void    add_pivot(t_pile *p, int pivot);
 void    algo_go2(t_all *res, int *mv);
 void        algo_go3(t_all *res, int *mv);
+void     all_free(t_all *res);
+void     pile_free(t_pile *t);
+void	algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos);
+void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos);
 #endif

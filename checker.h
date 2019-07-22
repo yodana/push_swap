@@ -41,4 +41,6 @@ void    ft_affichage(t_all *res);
 int     check_win(t_pile *a, t_pile *b);
 int     check(char **argv);
 int     check_double(t_pile *a);
+void     all_free(t_all *res);
+void     pile_free(t_pile *t);
 #endif
