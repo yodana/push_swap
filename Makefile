@@ -5,7 +5,7 @@ NAME2 = push_swap
 SRC1 = main_checker.c init.c moves.c display.c moves_s.c moves_p.c \
 		moves_r.c moves_rr.c check.c free.c
 
-SRC2 = main_push.c check.c algo.c init.c moves_p.c  display.c moves_r.c \
+SRC2 = main_push.c check.c srcs/algo/algo.c init.c moves_p.c  display.c moves_r.c \
 	moves_s.c tools.c moves_rr.c free.c algo_end.c
 
 HEADER = checker.h
@@ -22,9 +22,9 @@ GREEN = \033[0;32m
 
 END_COLOR = \033[0m
 
-OBJ1 = $(addprefix $(BIN_FOLDER),$(SRC1:.c=.o))
+OBJ1 = $(addprefix $(BIN_FOLDER)/,$(SRC1:.c=.o))
 
-OBJ2 = $(addprefix $(BIN_FOLDER1),$(SRC2:.c=.o))
+OBJ2 = $(addprefix $(BIN_FOLDER1)/,$(SRC2:.c=.o))
 
 LIB = libft/libft.a 
 

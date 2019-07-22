@@ -35,13 +35,13 @@ int		main(int argc, char **argv)
 		if (check_move(&res, mv) == -1)
 		{
 			ft_strdel(&mv);
-			pile_free(&res);
+			all_free(&res);
 			ft_error();
 			return (0);
 		}
 		ft_strdel(&mv);
 	}
 	check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
-	pile_free(&res);
+	all_free(&res);
 	return (0);
 }
