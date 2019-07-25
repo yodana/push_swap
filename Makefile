@@ -1,75 +1,57 @@
-NAME1 = checker
+NAME1 		= checker
+NAME2 		= push_swap
 
-NAME2 = push_swap
+SRC1 		= main_checker.c tools/init.c moves/moves.c tools/display.c moves/moves_s.c moves/moves_p.c \
+		moves/moves_r.c moves/moves_rr.c tools/check.c tools/free.c
+SRC2 		= main_push.c tools/check.c algo/algo.c tools/init.c moves/moves_p.c  tools/display.c moves/moves_r.c \
+	moves/moves_s.c tools/tools.c moves/moves_rr.c tools/free.c algo/algo_end.c moves/moves.c
 
-SRC1 = main_checker.c init.c moves.c display.c moves_s.c moves_p.c \
-		moves_r.c moves_rr.c check.c free.c
+HEADER 		= checker.h
+HEADER1 	= push_swap.h
 
-SRC2 = main_push.c check.c algo.c init.c moves_p.c  display.c moves_r.c \
-	moves_s.c tools.c moves_rr.c free.c algo_end.c
+SRC_FOLDER	=	srcs
+BIN_FOLDER	=	bin
+OBJ_FOLDER	=	$(BIN_FOLDER)/obj
 
-SCRDIR = srcs
+OBJ1 		= $(addprefix $(OBJ_FOLDER)/,$(SRC1:.c=.o))
+OBJ2		= $(addprefix $(OBJ_FOLDER)/,$(SRC2:.c=.o))
+SRCLOCA		= $(shell find $(SRC_FOLDER) -type d)
+OBJLOCA		= $(subst $(SRC_FOLDER), $(OBJ_FOLDER), $(SRCLOCA))
 
+YELLOW 		= \033[0;33m
+GREEN		= \033[0;32m
+END_COLOR	= \033[0m
 
-HEADER = checker.h
+LIBFT		=	libft/libft.a
+LIB 		= 	libft
 
-HEADER1 = push_swap.h
+FLAGS		=	-Wall -Wextra -Werror
 
-BUILDDIR	:=	bin
-OBJDIR		:=	$(BUILDDIR)/obj
-
-#BIN_FOLDER = ./bin/
-
-#BIN_FOLDER1 = ./bin/
-
-YELLOW = \033[0;33m
-
-GREEN = \033[0;32m
-
-END_COLOR = \033[0m
-
-OBJ1 = $(addprefix $(OBJDIR)/,$(SRC1:.c=.o))
-
-#OBJ2 = $(addprefix $(BIN_FOLDER1),$(SRC2:.c=.o))
-SRCLOCA	= $(shell find $(SRCDIR) -type d)
-OBJLOCA	=	$(subst $(SRCDIR), $(OBJDIR), $(SRCLOCA))
-
-LIBFT		=	libft.a
-LIB = libft/libft.a 
-
-FLAGS = -Wall -Wextra -Werror
-
-all: $(NAME1)# $(NAME2)
-
-#bin:
-#	@mkdir bin
+all: $(NAME1) $(NAME2)
 
 $(NAME1): $(OBJ1) $(LIBFT)
-		@gcc -o $(NAME1) $(OBJ1) -g
+		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) -g
 		@printf "$(GREEN)\\nCompilation CHECKER finish \\n$(END_COLOR)"
 
-#$(NAME2): $(OBJ2)
-#		@gcc -o $(NAME2) $(LIB) $(OBJ2) -g
-#		@printf "$(GREEN)Compilation PUSH SWAP finish $(END_COLOR)"
+$(NAME2): $(OBJ2)
+		@gcc -o $(NAME2) $(LIBFT) $(OBJ2) -g
+		@printf "$(GREEN)Compilation PUSH SWAP finish \\n$(END_COLOR)"
 
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c
-	@gcc $< -c -I $(HEADER) -o $@ -Wall -Wextra -Werror -g
+$(OBJ_FOLDER)/%.o:	$(SRC_FOLDER)/%.c | $(OBJ_FOLDER)
+	@gcc $< -c -o $@ $(FLAGS) -g
 
-#$(BIN_FOLDER1)%.o :%.c
-#	@gcc $< -c -I $(HEADER1) -o $@ -Wall -Wextra -Werror -g
-
-$(LIB):
+$(LIBFT):
 	@ make -C $(LIB) --no-print-directory
 
-$(OBJDIR):
-	mkdir -p $(OBJLOCA)
+$(OBJ_FOLDER):
+	@mkdir -p $(OBJLOCA)
 
-$(BUILDDIR):
-	@ mkdir -p $(BUILDDIR)
+$(BIN_FOLDER):
+	@ mkdir -p $(BIN_FOLDER)
 
 clean :
 	@make clean -C libft
-	@rm -rf $(BUILDDIR)
+	@rm -rf $(BIN_FOLDER)
 	@printf "$(GREEN)Clean done $(END_COLOR)\n"
 
 fclean : clean 

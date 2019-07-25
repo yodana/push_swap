@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/checker.h"
 
 void	ft_error(void)
 {

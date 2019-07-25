@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int		main(int argc, char **argv)
 {
@@ -22,16 +22,16 @@ int		main(int argc, char **argv)
 		return (0);
 	init(&res, argv, argc - 1);
 	while (res.a->size > 1)
-		algo_go(&res, 0, &mv);
+		algo_go(&res, 0);
 	while (check_win(res.a, res.b) == -1)
 	{
 		while (check_win(res.a, res.b) == -1 && check_tab(res.a) == 1)
-			algo_go(&res, 1, &mv);
+			algo_go(&res, 1);
 		while (check_tab(res.a) == -1)
-			algo_go(&res, 2, &mv);
+			algo_go(&res, 2);
 		ft_affichage(&res);
 	}
+	ft_printf("mv == %d\n", res.c_mv);
 	all_free(&res);
-	ft_printf("mv == %d\n", mv);
 	return (0);
 }
