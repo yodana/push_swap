@@ -12,30 +12,58 @@ void  ft_exit(SDL_Event *event)
   }
 }
 
-void    ft_time(SDL_Renderer *renderer, int P_hor, int P_ver)
+void    ft_time(SDL_Renderer *renderer, int P_hor, int P_ver, int *tab)
 {
     int time = 0;
- time = SDL_GetTicks();
-            if (time % 2000 == 0)
-            {
-              SDL_SetRenderDrawColor(renderer, 0,0, 0,0);
+    int i = 1;
+    int size = 2;
+    int c = 1;
+    double f = 0.9;
+    SDL_Rect rec;
+     SDL_SetRenderDrawColor(renderer, 0,0, 0,0);
               SDL_RenderClear(renderer);
                SDL_SetRenderDrawColor(renderer, 255,255, 255,255);
               SDL_RenderDrawLine(renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
-              SDL_RenderPresent(renderer);
+                rec.w = (640 / 2) / 2 * 2;
+              rec.h = (480 / 2);
+                rec.x = 0;//(440 / 2);
+                rec.y = 480 - (rec.h * c);
+                c++;
+                SDL_RenderFillRect(renderer, &rec);
+                //SDL_RenderClear(renderer);
+                 SDL_SetRenderDrawColor(renderer, 200,200, 200,200);
+                rec.w = (640 / 2) / 2 * 1 ;
+              rec.h = (480 / 2);
+                rec.x = ((640 / 2) / 2 * 2) / 4;//(440 / 2);
+                rec.y = 480 - (rec.h * c);
+                 SDL_RenderFillRect(renderer, &rec);
+               SDL_RenderPresent(renderer);
+        /*while (i >= 0)
+        {
+            time = SDL_GetTicks();
+            if (time % 2000 == 0)
+            {
+              rec.h = 480 / size;
+              rec.w = (640 / 2) / 2;
+                rec.x = (440 / 4);
+                rec.y = 0;
+               SDL_RenderPresent(renderer);
+               i--;
             }
-            if (time % 4000 == 0)
+           if (time % 4000 == 0)
             {
               SDL_SetRenderDrawColor(renderer, 0,0, 0,0);
               SDL_RenderClear(renderer);
                SDL_SetRenderDrawColor(renderer, 255,0, 0,255);
               SDL_RenderDrawLine(renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
               SDL_RenderPresent(renderer);
-            }
+            }*/
+        //}
 }
-int main(int argc, char** argv)
+void  ft_test()
 {
     /* Initialisation simple */
+    SDL_Window *pWindow = NULL;
     SDL_Event event;
     SDL_Renderer* renderer;
     SDL_Renderer* renderer1;
@@ -45,21 +73,20 @@ int main(int argc, char** argv)
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
     {
         printf("Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
-        return -1;
+        return ;
     }
 
     {
         /* Création de la fenêtre */
-        SDL_Window* pWindow = NULL;
 
-        pWindow = SDL_CreateWindow("Ma première application SDL2",SDL_WINDOWPOS_UNDEFINED,
+        pWindow = SDL_CreateWindow("TEST SDL2",SDL_WINDOWPOS_UNDEFINED,
                                                                   SDL_WINDOWPOS_UNDEFINED,
-                                                                  P_hor,
-                                                                  P_ver,
+                                                                  640,
+                                                                  480,
                                                                   SDL_WINDOW_SHOWN);
                renderer = SDL_CreateRenderer(pWindow, -1, 0);
         int tab[2] = {1, 2};
-         SDL_Rect rec = {100,100,100,100};
+       /*  SDL_Rect rec = {100, 480 - 100 ,100,100};
         SDL_SetRenderDrawColor(renderer, 255,255, 255,255);
          SDL_RenderFillRect(renderer, &rec);
         // SDL_RenderPresent(renderer);
@@ -69,7 +96,7 @@ int main(int argc, char** argv)
         rec.w = 200;
          SDL_RenderFillRect(renderer, &rec);
           SDL_RenderDrawLine(renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
-           SDL_RenderPresent(renderer);
+           SDL_RenderPresent(renderer);*/
                 int c = 0;
                 int time;
         if( pWindow )
@@ -78,18 +105,20 @@ int main(int argc, char** argv)
           while (1)
           {
             SDL_PollEvent(&event);
-            if (event.type == SDL_QUIT)
+           if (event.type == SDL_QUIT)
               break;
-             // ft_time(renderer, P_hor, P_ver);
+          ft_time(renderer, P_hor, P_ver, tab);
            }
-            SDL_DestroyWindow(pWindow);
+           SDL_DestroyWindow(pWindow);
         }
         else
         {
             fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
         }
     }
-    SDL_Quit();
-
-    return 0;
+         SDL_Quit();
+}
+int main(int argc, char** argv)
+{
+    ft_test();
 }
