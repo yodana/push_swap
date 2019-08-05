@@ -1,7 +1,7 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 #include "../libft/libft.h"
-
+#include "../SDL2/include/SDL2/SDL.h"
 # define INT_MAX "2147483647"
 typedef struct s_pile
 {
@@ -15,6 +15,8 @@ typedef struct s_all
     t_pile *b;
     t_pile *pa;
     t_pile *pb;
+   // SDL_Window *pWindow;
+    SDL_Renderer *renderer;
     int c_mv;
     int size;
 
@@ -44,4 +46,5 @@ int     check(char **argv);
 int     check_double(t_pile *a);
 void     all_free(t_all *res);
 void     pile_free(t_pile *t);
+void ft_affichage_window(int P_hor, int P_ver,t_all *res);
 #endif

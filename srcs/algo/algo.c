@@ -47,11 +47,11 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 		}
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
-			move_pa(res->a, res->b);
-			c > pos ? move_sa(res->a, res->b) : 0;
+			check_move(res, "pa");//move_pa(res->a, res->b);
+			c > pos ? check_move(res, "sa") : 0;
 		}
 		else
-			c_rb = c_rb + move_rb(res->a, res->b);
+			c_rb = c_rb + check_move(res, "rb");//move_rb(res->a, res->b);
 	}
 	algo_end_for_b(tab_tmp, res, c_rb, pos);
 	pile_free(tab_tmp);
@@ -72,15 +72,15 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 		if (c < pos)
 		{
 			if (res->b->numbers[0] < res->b->numbers[1])
-				move_sb(res->a, res->b);
+				check_move(res, "sb");//move_sb(res->a, res->b);
 		}
 		if (tab_tmp->numbers[c] <= tab_tmp->numbers[pos])
 		{
-			res->a->size > 1 ? move_pb(res->a, res->b) : 0;
-			c > pos ? move_sb(res->a, res->b) : 0;
+			res->a->size > 1 ? check_move(res, "pb") : 0;//move_pb(res->a, res->b) : 0;
+			c > pos ? check_move(res, "sb") : 0;//move_sb(res->a, res->b) : 0;
 		}
 		else
-			c_ra = c_ra + move_ra(res->a, res->b);
+			c_ra = c_ra + check_move(res, "ra"); //move_ra(res->a, res->b);
 	}
 	algo_end_for_a(tab_tmp, res, c_ra, pos);
 }
@@ -100,14 +100,14 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 			if (c < pos)
 			{
 				if (res->b->numbers[0] > res->b->numbers[1])
-					move_sb(res->a, res->b);
+					check_move(res, "sb");//move_sb(res->a, res->b);
 			}
-			move_pb(res->a, res->b);
+			check_move(res, "pb");//move_pb(res->a, res->b);
 			if (c > pos)
-				move_sb(res->a, res->b);
+				check_move(res, "sb");//move_sb(res->a, res->b);
 		}
 		else if (res->a->size > 1)
-			move_ra(res->a, res->b);
+			check_move(res, "ra");//move_ra(res->a, res->b);
 	}
 	add_pivot(res->pb, tab_tmp->numbers[pos]);
 	pile_free(tab_tmp);

@@ -56,6 +56,7 @@ int		init(t_all *res, char **numbers, int size)
 		return (-1);
 	if (!(res->pb = init_pile_b(size)))
 		return (-1);
+	res->renderer = NULL;
 	res->size = size;
 	return (1);
 }
