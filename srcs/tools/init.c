@@ -58,5 +58,7 @@ int		init(t_all *res, char **numbers, int size)
 		return (-1);
 	res->renderer = NULL;
 	res->size = size;
+	res->event = NULL;
+	res->delay = 200;
 	return (1);
 }

@@ -16,7 +16,9 @@ typedef struct s_all
     t_pile *pa;
     t_pile *pb;
    // SDL_Window *pWindow;
+   SDL_Event *event;
     SDL_Renderer *renderer;
+    double delay;
     int c_mv;
     int size;
 

@@ -13,10 +13,11 @@
 #include "../../includes/checker.h"
 void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
 {
-    //int time = 0;
+    int time = 0;
+    //int time1 = 0;
     int i = res->a->size - 1;
-    int size = res->size - 1;
-    int int_ma = 10;
+    int size = res->size;
+    int int_ma = 200;
     int c = 1;
     SDL_Rect rec;
     float w,h,x,y;
@@ -58,16 +59,24 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         i--;
       }
       SDL_RenderPresent(res->renderer);
-     /* while (1)
+      time = SDL_GetTicks() % 2147483647;
+      while (time % (int)res->delay)
       {
-          time = SDL_GetTicks();
-          if (time % 3000 == 0)
-          {
-            break;
-          }
-      }*/
-
+            time = SDL_GetTicks() % 2147483647;
+            printf("time == %d\n", (int)res->delay);
+            SDL_PollEvent(res->event);
+            if (res->event->type == SDL_QUIT || res->event->key.keysym.sym == SDLK_ESCAPE)
+            { 
+               //SDL_DestroyWindow(pWindow); 
+                exit(0);
+            }
+           /* if (res->event->key.keysym.sym == SDLK_UP)
+              res->delay = res->delay + 0.01;
+            if (res->event->key.keysym.sym == SDLK_DOWN)
+            res->delay = res->delay - 0.01;*/
+     }
 }
+
 /*void	ft_affichage(t_all *res)
 {
 	int i;

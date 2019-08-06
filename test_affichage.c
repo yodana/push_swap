@@ -6,7 +6,7 @@ void  ft_test(t_all	*res)
 {
     /* Initialisation simple */
     SDL_Window *pWindow = NULL;
-    SDL_Event event;
+    SDL_Event *event;
     SDL_Renderer* renderer;
     SDL_Renderer* renderer1;
     SDL_Surface* pSurface = NULL;
@@ -23,11 +23,12 @@ void  ft_test(t_all	*res)
 
         pWindow = SDL_CreateWindow("TEST SDL2",SDL_WINDOWPOS_UNDEFINED,
                                                                   SDL_WINDOWPOS_UNDEFINED,
-                                                                  res->size + 480,
-                                                                  res->size + 480,
-                                                                  SDL_WINDOW_SHOWN);
+                                                                              480,
+                                                                              480,
+                                                                  SDL_WINDOW_MAXIMIZED);
         renderer = SDL_CreateRenderer(pWindow, -1, 0);
         res->renderer = renderer;
+        res->event = event;
         int c = 0;
         int time;
         if( pWindow )
@@ -35,9 +36,12 @@ void  ft_test(t_all	*res)
           int i = 0;
           while (1)
           {
-            SDL_PollEvent(&event);
-            if (event.type == SDL_QUIT)
-              break;
+            SDL_PollEvent(event);
+            if (event->type == SDL_QUIT || event->key.keysym.sym == SDLK_ESCAPE)
+             { 
+               SDL_DestroyWindow(pWindow); 
+                exit(0);
+             }
               if (res->a->size > 1 && c == 0)
 	              algo_go(res, 0);
               else
@@ -51,7 +55,7 @@ void  ft_test(t_all	*res)
 	          }
             c++;
            }
-           SDL_DestroyWindow(pWindow);
+         SDL_DestroyWindow(pWindow);
         }
         else
         {
