@@ -16,7 +16,7 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
     //int time = 0;
     int i = res->a->size - 1;
     int size = res->size - 1;
-    int int_ma = 1001;
+    int int_ma = 10;
     int c = 1;
     SDL_Rect rec;
     float w,h,x,y;
@@ -44,7 +44,7 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
       i = res->b->size - 1;
        while (i >= 0)
       {
-       /* if (i % 2 == 0)
+       if (i % 2 == 0)
           SDL_SetRenderDrawColor(res->renderer, 255,255, 255,255);
         else
           SDL_SetRenderDrawColor(res->renderer, 200,200, 200,200);
@@ -54,13 +54,11 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         rec.x = (((P_hor / 2) - rec.w) / 2) + (P_hor / 2);
         rec.y = P_ver - (rec.h * c);
         c++;
-        SDL_RenderFillRect(res->renderer, &rec);*/
+        SDL_RenderFillRect(res->renderer, &rec);
         i--;
       }
       SDL_RenderPresent(res->renderer);
-     /* double f = 0.9;
-      sleep(f);*/
-      /*while (1)
+     /* while (1)
       {
           time = SDL_GetTicks();
           if (time % 3000 == 0)

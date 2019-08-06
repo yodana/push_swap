@@ -23,7 +23,7 @@ void  ft_test(t_all	*res)
 
         pWindow = SDL_CreateWindow("TEST SDL2",SDL_WINDOWPOS_UNDEFINED,
                                                                   SDL_WINDOWPOS_UNDEFINED,
-                                                                  res->size + 640,
+                                                                  res->size + 480,
                                                                   res->size + 480,
                                                                   SDL_WINDOW_SHOWN);
         renderer = SDL_CreateRenderer(pWindow, -1, 0);
@@ -38,20 +38,17 @@ void  ft_test(t_all	*res)
             SDL_PollEvent(&event);
             if (event.type == SDL_QUIT)
               break;
-            if (c == 0)
-            {
-              while (res->a->size > 1)
+              if (res->a->size > 1 && c == 0)
 	              algo_go(res, 0);
-              c++;
-            }
-	          while (check_win(res->a, res->b) == -1)
+              else
+                c++;
+	          if (check_win(res->a, res->b) == -1 && c > 0)
 	          {
-		           while (check_win(res->a, res->b) == -1 && check_tab(res->a) == 1)
+		           if (check_win(res->a, res->b) == -1 && check_tab(res->a) == 1)
 			            algo_go(res, 1);
-		            while (check_tab(res->a) == -1)
+		            else if (check_tab(res->a) == -1)
 			            algo_go(res, 2);
 	          }
-           // ft_time(renderer, P_hor, P_ver, tab,c);
             c++;
            }
            SDL_DestroyWindow(pWindow);
