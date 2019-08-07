@@ -30,11 +30,11 @@ FLAGS		=	-Wall -Wextra -Werror
 all: $(NAME1) $(NAME2)
 
 $(NAME1): $(OBJ1) $(LIBFT)
-		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) -I SDL2/include -L SDL2/lib -l SDL2-2.0.0 -g
+		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) test_affichage.c -I SDL2/include -L SDL2/lib -l SDL2-2.0.0 -g
 		@printf "$(GREEN)\\nCompilation CHECKER finish \\n$(END_COLOR)"
 
 $(NAME2): $(OBJ2)
-		@gcc -o $(NAME2) $(LIBFT) $(OBJ2) test_affichage.c -I SDL2/include -L SDL2/lib -l SDL2-2.0.0 -g
+		@gcc -o $(NAME2) $(LIBFT) $(OBJ2)  test_affichage.c -I SDL2/include -L SDL2/lib -l SDL2-2.0.0  -g
 		@printf "$(GREEN)Compilation PUSH SWAP finish \\n$(END_COLOR)"
 
 $(OBJ_FOLDER)/%.o:	$(SRC_FOLDER)/%.c | $(OBJ_FOLDER)

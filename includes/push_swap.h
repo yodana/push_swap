@@ -21,6 +21,7 @@ typedef struct s_all
    SDL_Event *event;
     SDL_Renderer* renderer;
     double delay;
+     int max_int;
     int c_mv;
     int size;
 

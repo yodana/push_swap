@@ -21,8 +21,8 @@ int		main(int argc, char **argv)
 	if (argc == 0)
 		return (0);
 	init(&res, argv, argc - 1);
-	ft_test(&res);
-	/*while (res.a->size > 1)
+	//ft_test(&res);
+	while (res.a->size > 1)
 		algo_go(&res, 0);
 	while (check_win(res.a, res.b) == -1)
 	{
@@ -30,9 +30,9 @@ int		main(int argc, char **argv)
 			algo_go(&res, 1);
 		while (check_tab(res.a) == -1)
 			algo_go(&res, 2);
-		ft_affichage(&res);
-	}*/
-	ft_printf("mv == %d\n", res.c_mv);
+		//ft_affichage(&res);
+	}
+	//ft_printf("mv == %d\n", res.c_mv);
 	all_free(&res);
 	return (0);
 }

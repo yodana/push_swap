@@ -12,6 +12,22 @@
 
 #include "../../includes/checker.h"
 
+int		ft_check_max(int *tab, int size)
+{
+	int i;
+	int res;
+
+	i = 0;
+	res = 0;
+	while (i < size)
+	{
+		if (res < ft_abs(tab[i]))
+			res = ft_abs(tab[i]);
+		i++;
+	}
+	return (res);
+}
+
 t_pile	*init_pile_b(int size)
 {
 	t_pile *b;
@@ -60,5 +76,6 @@ int		init(t_all *res, char **numbers, int size)
 	res->size = size;
 	res->event = NULL;
 	res->delay = 200;
+	res->max_int = ft_check_max(res->a->numbers, res->a->size);
 	return (1);
 }

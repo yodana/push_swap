@@ -17,7 +17,7 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
     int time = 0;
     int i = res->a->size - 1;
     int size = res->size;
-    int int_ma = 500;
+    int int_ma = res->max_int;
     int c = 1;
     SDL_Rect rec;
     SDL_SetRenderDrawColor(res->renderer, 0,0, 0,0);
@@ -29,7 +29,12 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         else
           SDL_SetRenderDrawColor(res->renderer, 200,200, 200,200);
         SDL_RenderDrawLine(res->renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
-        rec.w = ((P_hor / 2) / int_ma) * ft_abs(res->a->numbers[i]);
+        if (((P_hor / 2) / int_ma) > 0)
+          rec.w = ((P_hor / 2) / int_ma) * ft_abs(res->a->numbers[i]);
+        else
+          rec.w = ft_abs(res->a->numbers[i]);
+       if (rec.w > (1920 / 2))
+          rec.w = 1920 / 2;
         rec.h = P_ver / size;
         if (rec.h == 0)
           rec.h = 1;
@@ -48,7 +53,12 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         else
           SDL_SetRenderDrawColor(res->renderer, 200,200, 200,200);
         SDL_RenderDrawLine(res->renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
-        rec.w = (P_hor / 2) / int_ma * res->b->numbers[i];
+         if (((P_hor / 2) / int_ma) > 0)
+          rec.w = ((P_hor / 2) / int_ma) * ft_abs(res->a->numbers[i]);
+        else
+          rec.w = ft_abs(res->a->numbers[i]);
+        if (rec.w > (1920 / 2))
+          rec.w = 1920 / 2;
         rec.h = (P_ver / size);
         if (rec.h == 0)
           rec.h = 1;
@@ -59,8 +69,9 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         i--;
       }
       SDL_RenderPresent(res->renderer);
+
       time = SDL_GetTicks() % 2147483647;
-      while (time % 2)
+     /*while (time % 200)
       {
             time = SDL_GetTicks() % 2147483647;
             SDL_PollEvent(res->event);
@@ -69,9 +80,5 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
                //SDL_DestroyWindow(pWindow); 
                 exit(0);
             }
-           /* if (res->event->key.keysym.sym == SDLK_UP)
-              res->delay = res->delay + 0.01;
-            if (res->event->key.keysym.sym == SDLK_DOWN)
-            res->delay = res->delay - 0.01;*/
-     }
+     }*/
 }

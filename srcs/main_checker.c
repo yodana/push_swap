@@ -19,7 +19,7 @@ void	ft_error(void)
 
 int		main(int argc, char **argv)
 {
-	char	*mv;
+	//char	*mv;
 	t_all	res;
 
 	if (argc == 0)
@@ -30,7 +30,8 @@ int		main(int argc, char **argv)
 		ft_error();
 		return (0);
 	}
-	while ((mv = ft_get_txt(0)) != NULL)
+	ft_test(&res);
+	/*while ((mv = ft_get_txt(0)) != NULL)
 	{
 		if (check_move(&res, mv) == -1)
 		{
@@ -40,8 +41,8 @@ int		main(int argc, char **argv)
 			return (0);
 		}
 		ft_strdel(&mv);
-	}
-	check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
+	}*/
+	//check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
 	all_free(&res);
 	return (0);
 }

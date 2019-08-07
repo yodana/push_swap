@@ -6,7 +6,7 @@ void  ft_test(t_all	*res)
 {
     /* Initialisation simple */
     SDL_Window *pWindow = NULL;
-    SDL_Event *event;
+    SDL_Event event;
     SDL_Renderer* renderer;
     SDL_Surface* pSurface = NULL;
     const int P_hor = res->size + 640;
@@ -27,33 +27,39 @@ void  ft_test(t_all	*res)
                                                                   SDL_WINDOW_MAXIMIZED);
         renderer = SDL_CreateRenderer(pWindow, -1, 0);
         res->renderer = renderer;
-        res->event = event;
+        res->event = &event;
         int c = 0;
         int time;
+        char *mv;
         if( pWindow )
         {
           int i = 0;
           while (1)
           {
-            SDL_PollEvent(event);
-            if (event->type == SDL_QUIT || event->key.keysym.sym == SDLK_ESCAPE)
+            SDL_PollEvent(&event);
+            if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
              { 
                SDL_DestroyWindow(pWindow); 
                 exit(0);
              }
-              if (res->a->size > 1 && c == 0)
-	              algo_go(res, 0);
+              
+              if((mv = ft_get_txt(0)) != NULL)
+	            {
+		            if (check_move(res, mv) == -1)
+		            {
+			            ft_strdel(&mv);
+			            all_free(res);
+			          //  ft_error();
+			            return ;
+		            }
+                ft_strdel(&mv);
+	            }
               else
                 c++;
-	          if (check_win(res->a, res->b) == -1 && c > 0)
-	          {
-		           if (check_win(res->a, res->b) == -1 && check_tab(res->a) == 1)
-			            algo_go(res, 1);
-		            else if (check_tab(res->a) == -1)
-			            algo_go(res, 2);
-	          }
-            c++;
+              if (c == 1)
+                check_win(res->a, res->b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
            }
+           //SDL_DestroyRenderer(renderer);
          SDL_DestroyWindow(pWindow);
         }
         else

@@ -18,6 +18,7 @@ typedef struct s_all
    // SDL_Window *pWindow;
    SDL_Event *event;
     SDL_Renderer *renderer;
+    int max_int;
     double delay;
     int c_mv;
     int size;
@@ -48,5 +49,7 @@ int     check(char **argv);
 int     check_double(t_pile *a);
 void     all_free(t_all *res);
 void     pile_free(t_pile *t);
+void       ft_test();
+void       ft_error();
 void ft_affichage_window(int P_hor, int P_ver,t_all *res);
 #endif
