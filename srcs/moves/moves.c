@@ -37,7 +37,7 @@ int		check_move(t_all *res, char *mv)
 		{
 			g_moves[i].move(res->a, res->b);
 			res->c_mv = res->c_mv + 1;
-			ft_affichage_window(480, 480, res);
+			ft_affichage_window(1920, 1080, res);
 			//ft_affichage(res);
 			return (1);
 		}

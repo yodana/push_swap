@@ -8,7 +8,6 @@ void  ft_test(t_all	*res)
     SDL_Window *pWindow = NULL;
     SDL_Event *event;
     SDL_Renderer* renderer;
-    SDL_Renderer* renderer1;
     SDL_Surface* pSurface = NULL;
     const int P_hor = res->size + 640;
     const int P_ver = res->size + 480;
@@ -23,8 +22,8 @@ void  ft_test(t_all	*res)
 
         pWindow = SDL_CreateWindow("TEST SDL2",SDL_WINDOWPOS_UNDEFINED,
                                                                   SDL_WINDOWPOS_UNDEFINED,
-                                                                              480,
-                                                                              480,
+                                                                              1920,
+                                                                              1080,
                                                                   SDL_WINDOW_MAXIMIZED);
         renderer = SDL_CreateRenderer(pWindow, -1, 0);
         res->renderer = renderer;

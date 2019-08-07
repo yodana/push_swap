@@ -17,7 +17,7 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
     int time = 0;
     int i = res->a->size - 1;
     int size = res->size;
-    int int_ma = 200;
+    int int_ma = 500;
     int c = 1;
     SDL_Rect rec;
     SDL_SetRenderDrawColor(res->renderer, 0,0, 0,0);
@@ -29,8 +29,10 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         else
           SDL_SetRenderDrawColor(res->renderer, 200,200, 200,200);
         SDL_RenderDrawLine(res->renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
-        rec.w = ((P_hor / 2) / int_ma) * res->a->numbers[i];
+        rec.w = ((P_hor / 2) / int_ma) * ft_abs(res->a->numbers[i]);
         rec.h = P_ver / size;
+        if (rec.h == 0)
+          rec.h = 1;
         rec.x = ((P_hor / 2) - rec.w) / 2;
         rec.y = P_ver - (rec.h * c);
 
@@ -48,6 +50,8 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
         SDL_RenderDrawLine(res->renderer, P_hor / 2 , 0, P_hor / 2, P_ver);
         rec.w = (P_hor / 2) / int_ma * res->b->numbers[i];
         rec.h = (P_ver / size);
+        if (rec.h == 0)
+          rec.h = 1;
         rec.x = (((P_hor / 2) - rec.w) / 2) + (P_hor / 2);
         rec.y = P_ver - (rec.h * c);
         c++;
@@ -56,10 +60,9 @@ void   ft_affichage_window(int P_hor, int P_ver,t_all *res)
       }
       SDL_RenderPresent(res->renderer);
       time = SDL_GetTicks() % 2147483647;
-      while (time % (int)res->delay)
+      while (time % 2)
       {
             time = SDL_GetTicks() % 2147483647;
-            printf("time == %d\n", (int)res->delay);
             SDL_PollEvent(res->event);
             if (res->event->type == SDL_QUIT || res->event->key.keysym.sym == SDLK_ESCAPE)
             { 
