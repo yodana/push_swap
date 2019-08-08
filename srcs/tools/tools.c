@@ -12,6 +12,33 @@
 
 #include "../../includes/push_swap.h"
 
+int		ft_size(char **argv)
+{
+	int i;
+	char **new;
+	int 	b;
+	int 	res;
+
+	i = 1;
+	res = 0;
+	b = 0;
+	if (argv[1][0] == '-' && argv[1][1] == 'v')
+		i++;
+	while(argv[i])
+	{
+		new = ft_strsplit(argv[i], ' ');
+		while (new[b])
+		{
+			b++;
+			res = res + 1;
+		}
+		b = 0;
+		ft_strrdel(new);
+		i++;
+	}
+	return (res);
+}
+
 t_pile	*cpy_tab_pile(t_pile *a, t_pile *pa)
 {
 	int		i;

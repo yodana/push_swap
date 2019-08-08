@@ -63,25 +63,47 @@ int		check_double(t_pile *a)
 	return (1);
 }
 
-int		check(char **argv)
+int		real_check(char **tab)
 {
 	int i;
 	int j;
 
+	i = 0;
 	j = 0;
-	i = 1;
-	while (argv[i])
+	while (tab[i])
 	{
-		if (ft_strlen(argv[i]) > 10 || (ft_strlen(argv[i]) == 10
-					&& (ft_strcmp(INT_MAX, argv[i]) < 0)))
+		if (ft_strlen(tab[i]) > 10 || (ft_strlen(tab[i]) == 10
+					&& (ft_strcmp(INT_MAX, tab[i]) < 0)))
 			return (-1);
-		while (argv[i][j])
+		while (tab[i][j])
 		{
-			if (ft_isdigit(argv[i][j]) != 1)
+			if (ft_isdigit(tab[i][j]) != 1)
 				return (-1);
 			j++;
 		}
 		j = 0;
+		i++;
+	}
+	return (1);
+}
+
+int		check(char **argv)
+{
+	int i;
+	char **new;
+
+	i = 1;
+	if (argv[1][0] == '-' && argv[1][1] == 'v')
+		i++;
+	while (argv[i])
+	{
+		new = ft_strsplit(argv[i], ' ');
+		if (real_check(new) == -1)
+		{
+			//ft_strrdel(new);
+			return (-1);
+		}
+		ft_strrdel(new);
 		i++;
 	}
 	return (1);

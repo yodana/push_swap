@@ -3,6 +3,7 @@
 #include "../libft/libft.h"
 #include "../SDL2/include/SDL2/SDL.h"
 # define INT_MAX "2147483647"
+
 typedef struct s_pile
 {
     int *numbers;
@@ -15,13 +16,14 @@ typedef struct s_all
     t_pile *b;
     t_pile *pa;
     t_pile *pb;
-   // SDL_Window *pWindow;
-   SDL_Event *event;
+    SDL_Event *event;
     SDL_Renderer *renderer;
     int max_int;
     double delay;
     int c_mv;
     int size;
+    int verif_exe;
+    int window;
 
 }         t_all;
 
@@ -30,7 +32,7 @@ typedef struct s_moves
     char *type;
     int  (*move)(t_pile *, t_pile *);
 }               t_moves;
-
+int		ft_size(char **argv);
 int     move_sa(t_pile *a, t_pile *b);
 int     move_sb(t_pile *a, t_pile *b);
 int     move_ss(t_pile *a, t_pile *b);
@@ -49,7 +51,7 @@ int     check(char **argv);
 int     check_double(t_pile *a);
 void     all_free(t_all *res);
 void     pile_free(t_pile *t);
-void       ft_test();
 void       ft_error();
+void       init_window();
 void ft_affichage_window(int P_hor, int P_ver,t_all *res);
 #endif

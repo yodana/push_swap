@@ -3,35 +3,7 @@
 # define PUSH_SWAP_H
 #include "../libft/libft.h"
 #include "../SDL2/include/SDL2/SDL.h"
-
-typedef struct s_pile
-{
-    int *numbers;
-    int size;
-    int p_pivot;
-}       t_pile;
-
-typedef struct s_all
-{
-    t_pile *a;
-    t_pile *b;
-    t_pile *pa;
-    t_pile *pb;
-   //SDL_Window *pWindow;
-   SDL_Event *event;
-    SDL_Renderer* renderer;
-    double delay;
-     int max_int;
-    int c_mv;
-    int size;
-
-}         t_all;
-
-typedef struct s_moves
-{
-    char *type;
-    int  (*move)(t_pile *, t_pile *);
-}               t_moves;
+#include "checker.h"
 
 int		check_move(t_all *res, char *mv);
 int     init(t_all *res, char **numbers, int size);
@@ -59,6 +31,7 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos);
 void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos);
 void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos);
 void  ft_test(t_all	*res);
+void    ft_error();
 typedef struct s_algo
 {
     int type;
