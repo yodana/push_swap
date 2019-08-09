@@ -20,7 +20,7 @@ void	algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos)
 	{
 		while (c_ra != 0)
 		{
-			move_rra(res->a, res->b);
+			check_move(res, "rra");
 			c_ra--;
 		}
 	}
@@ -42,7 +42,7 @@ void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos)
 	{
 		while (c_rb != 0)
 		{
-			move_rrb(res->a, res->b);
+			check_move(res, "rrb");
 			c_rb--;
 		}
 	}

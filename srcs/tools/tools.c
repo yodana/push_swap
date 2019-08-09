@@ -26,7 +26,8 @@ int		ft_size(char **argv)
 		i++;
 	while(argv[i])
 	{
-		new = ft_strsplit(argv[i], ' ');
+		if (!(new = ft_strsplit(argv[i], ' ')))
+			return (-1);
 		while (new[b])
 		{
 			b++;

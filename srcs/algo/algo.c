@@ -47,11 +47,11 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 		}
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
-			check_move(res, "pa");//move_pa(res->a, res->b);
+			check_move(res, "pa");
 			c > pos ? check_move(res, "sa") : 0;
 		}
 		else
-			c_rb = c_rb + check_move(res, "rb");//move_rb(res->a, res->b);
+			c_rb = c_rb + check_move(res, "rb");
 	}
 	algo_end_for_b(tab_tmp, res, c_rb, pos);
 	pile_free(tab_tmp);
@@ -72,15 +72,15 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 		if (c < pos)
 		{
 			if (res->b->numbers[0] < res->b->numbers[1])
-				check_move(res, "sb");//move_sb(res->a, res->b);
+				check_move(res, "sb");
 		}
 		if (tab_tmp->numbers[c] <= tab_tmp->numbers[pos])
 		{
-			res->a->size > 1 ? check_move(res, "pb") : 0;//move_pb(res->a, res->b) : 0;
-			c > pos ? check_move(res, "sb") : 0;//move_sb(res->a, res->b) : 0;
+			res->a->size > 1 ? check_move(res, "pb") : 0;
+			c > pos ? check_move(res, "sb") : 0;
 		}
 		else
-			c_ra = c_ra + check_move(res, "ra"); //move_ra(res->a, res->b);
+			c_ra = c_ra + check_move(res, "ra");
 	}
 	algo_end_for_a(tab_tmp, res, c_ra, pos);
 }
@@ -100,14 +100,14 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 			if (c < pos)
 			{
 				if (res->b->numbers[0] > res->b->numbers[1])
-					check_move(res, "sb");//move_sb(res->a, res->b);
+					check_move(res, "sb");
 			}
-			check_move(res, "pb");//move_pb(res->a, res->b);
+			check_move(res, "pb");
 			if (c > pos)
-				check_move(res, "sb");//move_sb(res->a, res->b);
+				check_move(res, "sb");
 		}
 		else if (res->a->size > 1)
-			check_move(res, "ra");//move_ra(res->a, res->b);
+			check_move(res, "ra");
 	}
 	add_pivot(res->pb, tab_tmp->numbers[pos]);
 	pile_free(tab_tmp);
@@ -116,7 +116,7 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 void	algo_go(t_all *res, int use)
 {
 	t_pile	*tab_tmp;
-	int i;
+	int		i;
 
 	i = 0;
 	tab_tmp = NULL;
@@ -130,10 +130,4 @@ void	algo_go(t_all *res, int use)
 		}
 		i++;
 	}
-	/*if (use == 0)
-		algo_begin(-1, res, tab_tmp, 0);
-	else if (use == 1)
-		algo_for_b(-1, res, tab_tmp, 0);
-	else if (use == 2)
-		algo_for_a(-1, res, tab_tmp, 0);*/
 }

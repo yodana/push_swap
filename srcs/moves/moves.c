@@ -38,10 +38,9 @@ int		check_move(t_all *res, char *mv)
 			g_moves[i].move(res->a, res->b);
 			res->c_mv = res->c_mv + 1;
 			if (res->verif_exe == 1)
-				ft_printf("%s\n",mv);
+				ft_printf("%s\n", mv);
 			if (res->window == 1)
 				ft_affichage_window(1920, 1080, res);
-			//ft_affichage(res);
 			return (1);
 		}
 		i++;

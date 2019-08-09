@@ -91,20 +91,18 @@ int		real_check(char **tab)
 
 int		check(char **argv)
 {
-	int i;
-	char **new;
+	int		i;
+	char	**new;
 
 	i = 1;
 	if (argv[1][0] == '-' && argv[1][1] == 'v')
 		i++;
 	while (argv[i])
 	{
-		new = ft_strsplit(argv[i], ' ');
-		if (real_check(new) == -1)
-		{
-			//ft_strrdel(new);
+		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
-		}
+		if (real_check(new) == -1)
+			return (-1);
 		ft_strrdel(new);
 		i++;
 	}

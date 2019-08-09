@@ -12,16 +12,27 @@
 
 #include "../includes/push_swap.h"
 
+void	ft_error(void)
+{
+	write(2, "Error\n", 6);
+}
+
 int		main(int argc, char **argv)
 {
 	t_all	res;
 	int		mv;
 
 	mv = 0;
-	if (argc == 0)
+	if (argc == 1)
 		return (0);
-	init(&res, argv, ft_size(argv));
+	if (init(&res, argv, ft_size(argv)) == -1)
+		return (0);
 	res.verif_exe = 1;
+	if (check(argv) == -1 || check_double(res.a) == -1)
+	{
+		ft_error();
+		return (0);
+	}
 	while (res.a->size > 1)
 		algo_go(&res, 0);
 	while (check_win(res.a, res.b) == -1)
@@ -31,7 +42,6 @@ int		main(int argc, char **argv)
 		while (check_tab(res.a) == -1)
 			algo_go(&res, 2);
 	}
-	//ft_printf("mv == %d\n", res.c_mv);
 	all_free(&res);
 	return (0);
 }
