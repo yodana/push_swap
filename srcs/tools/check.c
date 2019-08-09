@@ -77,6 +77,8 @@ int		real_check(char **tab)
 			return (-1);
 		while (tab[i][j])
 		{
+			if (tab[i][0] == '-' && tab[i][1] && j == 0)
+				j++;
 			if (ft_isdigit(tab[i][j]) != 1)
 				return (-1);
 			j++;

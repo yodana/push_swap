@@ -59,9 +59,11 @@ t_pile	*init_pile_a(char **numbers, int size)
 	while (numbers[i])
 	{
 		new = ft_strsplit(numbers[i], ' ');
+		ft_printf("tab== %s &&  ",new[b]);
 		while (new[b])
 		{
 			a->numbers[j] = ft_atoi(new[b]);
+			ft_printf("numbetrs == %d",a->numbers[j]);
 			b++;
 			j++;
 		}
