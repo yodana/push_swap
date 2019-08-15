@@ -58,6 +58,7 @@ int		main(int argc, char **argv)
 	else
 		read_mv(&res);
 	check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
+	ft_printf("mouvement == %d", res.c_mv);
 	all_free(&res);
 	return (0);
 }
