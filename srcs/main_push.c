@@ -42,6 +42,7 @@ int		main(int argc, char **argv)
 		while (check_tab(res.a) == -1)
 			algo_go(&res, 2);
 	}
+	ft_printf("mv == %d", res.c_mv);
 	all_free(&res);
 	return (0);
 }

@@ -19,6 +19,15 @@ static const t_algo	g_algo[] = {
 	{-1, NULL}
 };
 
+/*void	algo_minus(t_pile *tmp, t_pile *res)
+{
+	if (tmp->size == 0)
+		return ;
+	while (check_tab(tmp) == -1)
+	{
+
+	}
+}*/
 int		find_pos_pivot(t_pile *target, int pile)
 {
 	int i;
@@ -36,6 +45,13 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	c_rb = 0;
 	if (!(tab_tmp = cpy_tab_pile(res->b, res->pb)))
 		return ;
+	//if (check_tab(tab_tmp) == 1)
+	//	return ;
+	/*if (check_tab(tab_tmp) == 1 && res->pa->size > 0)
+	{
+		res->pa->size = res->pa->size - 1;
+		return ;
+	}*/
 	pos = find_pos_pivot(tab_tmp, 0);
 	i = tab_tmp->size;
 	while (++c < i)
@@ -64,6 +80,16 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
 		return ;
+	/*if (tab_tmp->size <= 3)
+	{
+		algo_minus(tab_tmp, res);
+		return ;
+	}*/
+	/*if (check_tab(tab_tmp) == 1 && res->pa->size > 0)
+	{
+		res->pa->size = res->pa->size - 1;
+		return ;
+	}*/
 	pos = find_pos_pivot(tab_tmp, 0);
 	c_ra = 0;
 	i = tab_tmp->size;
