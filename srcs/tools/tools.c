@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 23:41:12 by yodana            #+#    #+#             */
-/*   Updated: 2019/07/22 07:12:04 by yodana           ###   ########.fr       */
+/*   Updated: 2019/08/18 11:39:40 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int		ft_size(char **argv)
 {
-	int i;
-	char **new;
-	int 	b;
-	int 	res;
+	int		i;
+	char	**new;
+	int		b;
+	int		res;
 
 	i = 1;
 	res = 0;
 	b = 0;
 	if (argv[1][0] == '-' && argv[1][1] == 'v')
 		i++;
-	while(argv[i])
+	while (argv[i])
 	{
 		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
@@ -48,7 +48,7 @@ t_pile	*cpy_tab_pile(t_pile *a, t_pile *pa)
 	i = 0;
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
 		return (NULL);
-	if (!(new->numbers = (int*)malloc(sizeof(int) * a->size + 1)))
+	if (!(new->numbers = (int*)malloc(sizeof(int) * a->size + 10)))
 		return (NULL);
 	if (pa->size == 0)
 	{
@@ -61,7 +61,7 @@ t_pile	*cpy_tab_pile(t_pile *a, t_pile *pa)
 	else
 	{
 		i = -1;
-		while (pa->numbers[pa->size - 1] != a->numbers[++i])
+		while (pa->numbers[pa->size - 1] != a->numbers[++i] && i < a->size)
 			new->numbers[i] = a->numbers[i];
 	}
 	new->size = i;

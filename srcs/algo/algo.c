@@ -18,16 +18,90 @@ static const t_algo	g_algo[] = {
 	{2, algo_for_a},
 	{-1, NULL}
 };
-
-/*void	algo_minus(t_pile *tmp, t_pile *res)
+int		check_tab_pivot(t_pile *a, int pivot)
 {
-	if (tmp->size == 0)
-		return ;
-	while (check_tab(tmp) == -1)
-	{
+	int i;
 
+	i = 0;
+	while (i + 1 < a->size)
+	{
+		if (a->numbers[i] < pivot)
+			return (-1);
+		i++;
 	}
-}*/
+	return (1);
+}
+
+void	algo_minus_b(t_pile *tmp, t_all *res)
+{
+	int c;
+
+	c = 0;
+	if (tmp->size <= 1)
+		return ;
+	if (tmp->size == 2)
+	{
+		if (tmp->numbers[0] < tmp->numbers[1])
+			check_move(res, "sb");
+		return ;
+	}
+	while (check_tab_b(tmp) == -1 || c != 0)
+	{
+		if (res->a->numbers[0] < res->a->numbers[1])
+		{
+			check_move(res, "sb");
+			move_sa(tmp, tmp);
+		}
+		else if (c == 0)
+		{
+			check_move(res, "rb");
+			c++;
+			move_ra(tmp, tmp);
+		}
+		else if (c > 0)
+		{
+			c--;
+			check_move(res, "rrb");
+			move_rra(tmp, tmp);
+		}
+	}
+}
+
+void	algo_minus(t_pile *tmp, t_all *res)
+{
+	int c;
+
+	c = 0;
+	if (tmp->size <= 1)
+		return ;
+	if (tmp->size == 2)
+	{
+		if (tmp->numbers[0] > tmp->numbers[1])
+			check_move(res, "sa");
+		return ;
+	}
+	/*while (check_tab(tmp->numbers, tmp->size) == -1 || c != 0)
+	{
+		if (res->a->numbers[0] > res->a->numbers[1])
+		{
+			check_move(res, "sa");
+			move_sa(tmp, tmp);
+		}
+		else if (c == 0)
+		{
+			check_move(res, "ra");
+			c++;
+			move_ra(tmp, tmp);
+		}
+		else if (c > 0)
+		{
+			c--;
+			check_move(res, "rra");
+			move_rra(tmp, tmp);
+		}
+	}*/
+}
+
 int		find_pos_pivot(t_pile *target, int pile)
 {
 	int i;
@@ -45,30 +119,55 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	c_rb = 0;
 	if (!(tab_tmp = cpy_tab_pile(res->b, res->pb)))
 		return ;
+	/*if (res->b->size > 1 && res->b->numbers[0] < res->b->numbers[1])
+		check_move(res, "sb");*/
 	//if (check_tab(tab_tmp) == 1)
 	//	return ;
-	/*if (check_tab(tab_tmp) == 1 && res->pa->size > 0)
+	/*if (check_tab_b(tab_tmp) == 1)
 	{
-		res->pa->size = res->pa->size - 1;
+		if (res->pb->size > 0)
+			res->pb->size = res->pb->size - 1;
 		return ;
+	}*/
+	/*if (tab_tmp->size <= 3)
+	{
+		//res->c_mv = res->c_mv * 10;
+		algo_minus_b(tab_tmp, res);
+		if (res->pb->size > 0)
+			res->pb->size = res->pb->size - 1;
+		return ;
+	}*/
+	/*if (res->b->size > 1 && res->b->numbers[0] < res->b->numbers[1])
+	{
+		check_move(res, "sb");
+		move_sa(tab_tmp, tab_tmp);
 	}*/
 	pos = find_pos_pivot(tab_tmp, 0);
 	i = tab_tmp->size;
 	while (++c < i)
 	{
-		if (c < pos)
+		if (res->a->numbers[0] > res->a->numbers[1])
 		{
-			if (res->a->numbers[0] > res->a->numbers[1])
-				check_move(res, "sa");
+			check_move(res, "sa");
 		}
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pa");
-			c > pos ? check_move(res, "sa") : 0;
+			if (c == pos)
+			{
+				check_move(res, "ra");
+			}
+			//	check_move(res, "ra");	
+			//c > pos ? check_move(res, "sa") : 0;
 		}
 		else
 			c_rb = c_rb + check_move(res, "rb");
 	}
+	if (c > pos)
+		check_move(res, "rra");
+	//if (res->b->numbers[0] < res->b->numbers[1])
+	//	check_move(res, "sb");
+	//ft_printf("pivot for b == %d\n", tab_tmp->numbers[pos]);
 	algo_end_for_b(tab_tmp, res, c_rb, pos);
 	pile_free(tab_tmp);
 }
@@ -80,34 +179,40 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
 		return ;
-	/*if (tab_tmp->size <= 3)
+	/*if (res->a->size > 1 && res->a->numbers[0] > res->a->numbers[1])
 	{
-		algo_minus(tab_tmp, res);
-		return ;
-	}*/
-	/*if (check_tab(tab_tmp) == 1 && res->pa->size > 0)
-	{
-		res->pa->size = res->pa->size - 1;
-		return ;
+		check_move(res, "sa");
+		move_sa(tab_tmp, tab_tmp);
 	}*/
 	pos = find_pos_pivot(tab_tmp, 0);
+	//ft_printf("size of tab == %d && size of pa == %d\n",tab_tmp->size,res->pa->size);
 	c_ra = 0;
 	i = tab_tmp->size;
-	while (++c < i)
+	while (++c < i && (check_tab(res->a->numbers, res->a->size) == -1))
 	{
-		if (c < pos)
+		if (c > pos)
 		{
-			if (res->b->numbers[0] < res->b->numbers[1])
-				check_move(res, "sb");
+			if (check_tab_pivot(res->a, tab_tmp->numbers[pos]) == 1)
+				break ;
 		}
+		if (res->b->numbers[0] < res->b->numbers[1])
+			check_move(res, "sb");
 		if (tab_tmp->numbers[c] <= tab_tmp->numbers[pos])
 		{
 			res->a->size > 1 ? check_move(res, "pb") : 0;
-			c > pos ? check_move(res, "sb") : 0;
+			if (res->a->size > 1 && res->b->size > 1 && c == pos)
+			{
+				check_move(res, "rb");
+			}
+			//c > pos ? check_move(res, "sb") : 0;
 		}
-		else
+		else 
 			c_ra = c_ra + check_move(res, "ra");
 	}
+	if (res->b->size > 1 && c > pos)
+		check_move(res, "rrb");
+	//if (res->a->numbers[0] > res->a->numbers[1])
+		//check_move(res, "sa");
 	algo_end_for_a(tab_tmp, res, c_ra, pos);
 }
 
@@ -117,22 +222,27 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
 		return ;
+	if (res->size <= 3)
+	{
+		algo_minus(tab_tmp, res);
+		return ;
+	}
 	pos = find_pos_pivot(res->a, 0);
 	i = res->a->size;
 	while (++c < i)
 	{
 		if (tab_tmp->numbers[c] <= tab_tmp->numbers[pos])
 		{
-			if (c < pos)
+			if (c < pos && res->b->size > 0)
 			{
-				if (res->b->numbers[0] > res->b->numbers[1])
+				if (res->b->numbers[0] < res->b->numbers[1])
 					check_move(res, "sb");
 			}
 			check_move(res, "pb");
 			if (c > pos)
 				check_move(res, "sb");
 		}
-		else if (res->a->size > 1)
+		else if (res->a->size > 1) //&& check_tab(res->a->numbers, res->a->size) == -1)
 			check_move(res, "ra");
 	}
 	add_pivot(res->pb, tab_tmp->numbers[pos]);
@@ -147,6 +257,7 @@ void	algo_go(t_all *res, int use)
 	i = 0;
 	tab_tmp = NULL;
 	(void)g_algo;
+	//ft_printf( RED "new pivot\n" END_COLOR);
 	while (g_algo[i].algo)
 	{
 		if (g_algo[i].type == use)

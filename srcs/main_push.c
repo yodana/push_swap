@@ -33,16 +33,16 @@ int		main(int argc, char **argv)
 		ft_error();
 		return (0);
 	}
-	while (res.a->size > 1)
+	while (res.a->size > 1 && check_win(res.a, res.b) == -1)
 		algo_go(&res, 0);
 	while (check_win(res.a, res.b) == -1)
 	{
-		while (check_win(res.a, res.b) == -1 && check_tab(res.a) == 1)
+		while (check_win(res.a, res.b) == -1 && check_tab(res.a->numbers, res.a->size) == 1)
 			algo_go(&res, 1);
-		while (check_tab(res.a) == -1)
+		while (check_tab(res.a->numbers, res.a->size) == -1)
 			algo_go(&res, 2);
 	}
-	ft_printf("mv == %d", res.c_mv);
 	all_free(&res);
+	//ft_printf("mv == %d", res.c_mv);
 	return (0);
 }

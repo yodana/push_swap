@@ -2,9 +2,9 @@ NAME1 		= checker
 NAME2 		= push_swap
 
 SRC1 		= main_checker.c tools/init.c moves/moves.c tools/display.c moves/moves_s.c moves/moves_p.c \
-		moves/moves_r.c moves/moves_rr.c tools/check.c tools/free.c tools/tools.c
+		moves/moves_r.c moves/moves_rr.c tools/check.c tools/free.c tools/tools.c tools/display_window.c
 SRC2 		= main_push.c tools/check.c algo/algo.c tools/init.c moves/moves_p.c  tools/display.c moves/moves_r.c \
-	moves/moves_s.c tools/tools.c moves/moves_rr.c tools/free.c algo/algo_end.c moves/moves.c 
+	moves/moves_s.c tools/tools.c moves/moves_rr.c tools/free.c algo/algo_end.c moves/moves.c tools/display_window.c
 
 HEADER 		= checker.h
 HEADER1 	= push_swap.h

@@ -12,14 +12,28 @@
 
 #include "../../includes/checker.h"
 
-int		check_tab(t_pile *target)
+int		check_tab_b(t_pile *target)
 {
 	int i;
 
 	i = 0;
 	while (i + 1 < target->size)
 	{
-		if (target->numbers[i] > target->numbers[i + 1])
+		if (target->numbers[i] < target->numbers[i + 1])
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
+int		check_tab(int *target, int size)
+{
+	int i;
+
+	i = 0;
+	while (i + 1 < size)
+	{
+		if (target[i] > target[i + 1])
 			return (-1);
 		i++;
 	}

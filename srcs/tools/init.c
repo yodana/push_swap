@@ -45,30 +45,25 @@ t_pile	*init_pile_a(char **numbers, int size)
 	int		i;
 	int		j;
 	t_pile	*a;
-	char **new;
-	int 	b;
+	char	**new;
+	int		b;
 
-	i = 1;
-	j = 0;
-	b = 0;
+	i = 0;
+	j = -1;
+	b = -1;
 	if (!(a = (t_pile*)malloc(sizeof(t_pile))))
 		return (NULL);
 	if (!(a->numbers = (int*)malloc(sizeof(int) * size)))
 		return (NULL);
 	if (numbers[1][0] == '-' && numbers[1][1] == 'v')
 		i++;
-	while (numbers[i])
+	while (numbers[++i])
 	{
 		if (!(new = ft_strsplit(numbers[i], ' ')))
 			return (NULL);
-		while (new[b])
-		{
-			a->numbers[j] = ft_atoi(new[b]);
-			b++;
-			j++;
-		}
-		b = 0;
-		i++;
+		while (new[++b])
+			a->numbers[++j] = ft_atoi(new[b]);
+		b = -1;
 	}
 	a->size = size;
 	return (a);
