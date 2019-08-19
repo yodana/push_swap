@@ -43,6 +43,6 @@ int		main(int argc, char **argv)
 			algo_go(&res, 2);
 	}
 	all_free(&res);
-	//ft_printf("mv == %d", res.c_mv);
+	ft_printf("mv == %d", res.c_mv);
 	return (0);
 }

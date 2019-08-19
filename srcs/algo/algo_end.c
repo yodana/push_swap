@@ -49,20 +49,21 @@ void	algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos)
 	pile_free(tab_tmp);
 }
 
-void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos)
+void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos, int c_ra)
 {
 	/*if (check_tab(res->a) == 1)
 	{
 		if (res->pa->size > 0)
 			res->pa->size = res->pa->size - 1;
 	}*/
+	(void)c_ra;
 	if (tab_tmp->size >= 1)
 		add_pivot(res->pa, tab_tmp->numbers[pos]);
 	if (res->pb->size > 0)
 		res->pb->size = res->pb->size - 1;
 	if (c_rb != res->b->size)
 	{
-		if (c_rb < res->b->size / 2 || c_rb == 1)
+		if (c_rb < (res->b->size / 2) || c_rb == 1)
 		{
 			while (c_rb != 0)
 			{

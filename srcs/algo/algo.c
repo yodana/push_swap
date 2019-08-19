@@ -80,32 +80,43 @@ void	algo_minus(t_pile *tmp, t_all *res)
 			check_move(res, "sa");
 		return ;
 	}
-	/*while (check_tab(tmp->numbers, tmp->size) == -1 || c != 0)
+	while (check_tab(res->a->numbers, res->a->size) == -1)
 	{
-		if (res->a->numbers[0] > res->a->numbers[1])
+		if (!(tmp = cpy_tab_pile(res->a, res->pa)))
+			return ;
+		if (tmp->numbers[0] > tmp->numbers[1])
 		{
 			check_move(res, "sa");
-			move_sa(tmp, tmp);
+			//move_sa(tmp, tmp);
 		}
-		else if (c == 0)
+		if (tmp->numbers[1] > tmp->numbers[2])
 		{
-			check_move(res, "ra");
-			c++;
-			move_ra(tmp, tmp);
+			check_move(res, "rra");
+			//c++;
+			//move_ra(tmp, tmp);
 		}
-		else if (c > 0)
+		pile_free(tmp);
+		/*else if (res->size > 3 && c > 0)
 		{
 			c--;
 			check_move(res, "rra");
 			move_rra(tmp, tmp);
-		}
-	}*/
+		}*/
+	}
 }
 
 int		find_pos_pivot(t_pile *target, int pile)
 {
 	int i;
+	//int	res = ft_check_max(target->numbers, target->size) / 2;
 
+	i = 0;
+	/*while (i + 1 < target->size)
+	{
+		if (target->numbers[i] == res)
+			return (target->numbers[i]);
+			i++;
+	}*/
 	pile = 1;
 	i = target->size / 2;
 	return (i);
@@ -144,17 +155,24 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	}*/
 	pos = find_pos_pivot(tab_tmp, 0);
 	i = tab_tmp->size;
+	int c_ra = 0;
 	while (++c < i)
 	{
 		if (res->a->numbers[0] > res->a->numbers[1])
 		{
-			check_move(res, "sa");
+				check_move(res, "sa");
+				/*if (c > pos)
+				{
+					c_ra++;
+					check_move(res, "ra");
+				}*/
 		}
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pa");
 			if (c == pos)
 			{
+				//ft_printf(RED "FDP" END_COLOR);
 				check_move(res, "ra");
 			}
 			//	check_move(res, "ra");	
@@ -163,12 +181,19 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 		else
 			c_rb = c_rb + check_move(res, "rb");
 	}
-	if (c > pos)
+	//ft_printf("c_rb == %d && c_ra == %d", c_rb, c_ra);
+	/*while (c_ra > 0)
+	{//ft_printf(RED "FDP" END_COLOR);
 		check_move(res, "rra");
+		c_ra--;
+	}*/
+	//ft_printf("c_rb == %d && c_ra == %d", c_rb, c_ra);
 	//if (res->b->numbers[0] < res->b->numbers[1])
 	//	check_move(res, "sb");
 	//ft_printf("pivot for b == %d\n", tab_tmp->numbers[pos]);
-	algo_end_for_b(tab_tmp, res, c_rb, pos);
+	algo_end_for_b(tab_tmp, res, c_rb, pos, c_ra);
+	if (c > pos)
+		check_move(res, "rra");
 	pile_free(tab_tmp);
 }
 

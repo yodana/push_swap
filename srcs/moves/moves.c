@@ -23,6 +23,7 @@ static const t_moves	g_moves[] = {
 	{"rr", move_rr},
 	{"rra", move_rra},
 	{"rrb", move_rrb},
+	{"rrr", move_rrr},
 	{NULL, NULL}
 };
 

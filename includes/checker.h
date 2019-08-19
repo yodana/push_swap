@@ -69,5 +69,5 @@ void			init_window();
 void			ft_affichage_window(int p_hor, int p_ver, t_all *res);
 void			ft_display_a(int i, t_all *res, int p_hor, int p_ver);
 void			ft_display_b(int i, t_all *res, int p_hor, int p_ver);
-
+int				move_rrr(t_pile *a, t_pile *b);
 #endif
