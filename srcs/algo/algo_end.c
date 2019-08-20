@@ -57,7 +57,7 @@ void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos, int c_ra)
 			res->pa->size = res->pa->size - 1;
 	}*/
 	(void)c_ra;
-	if (tab_tmp->size >= 1)
+	if (tab_tmp->size >= 1 && (check_tab(res->a->numbers, res->a->size) == -1))
 		add_pivot(res->pa, tab_tmp->numbers[pos]);
 	if (res->pb->size > 0)
 		res->pb->size = res->pb->size - 1;

@@ -5,7 +5,7 @@ ERR=0
 
 for i in range {0..99}
 	do 
-		ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
+		ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
 		tab[i]=`./push_swap $ARG | wc -l`
 done
 let "a = 0"

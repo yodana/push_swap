@@ -18,6 +18,21 @@ static const t_algo	g_algo[] = {
 	{2, algo_for_a},
 	{-1, NULL}
 };
+
+int		check_tab_pivot_b(t_pile *a, int pivot)
+{
+	int i;
+
+	i = 0;
+	while (i + 1 < a->size)
+	{
+		if (a->numbers[i] > pivot)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
 int		check_tab_pivot(t_pile *a, int pivot)
 {
 	int i;
@@ -158,6 +173,12 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	int c_ra = 0;
 	while (++c < i)
 	{
+		if (c > pos && check_tab(res->a->numbers, res->a->size - 1) == -1 && check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == 1)
+		{
+			//if (check_)
+			//check_move(res, "rra");
+			break ;
+		}
 		if (res->a->numbers[0] > res->a->numbers[1])
 		{
 				check_move(res, "sa");
