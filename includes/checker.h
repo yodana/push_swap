@@ -14,7 +14,9 @@
 # define CHECKER_H
 # include "../libft/libft.h"
 # include "../SDL2/include/SDL2/SDL.h"
+# include "../SDL2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 # define INT_MAX "2147483647"
+# define  B 0
 
 typedef struct	s_pile
 {
@@ -22,12 +24,23 @@ typedef struct	s_pile
 	int size;
 }				t_pile;
 
+typedef struct 	s_argv
+{
+	int v;
+	int c;
+	int m;
+	int color_b;
+	int color_r;
+	int color_g;
+}				t_argv;
+
 typedef struct	s_all
 {
 	t_pile			*a;
 	t_pile			*b;
 	t_pile			*pa;
 	t_pile			*pb;
+	t_argv			*commands;
 	SDL_Event		*event;
 	SDL_Renderer	*renderer;
 	int				max_int;
@@ -35,7 +48,6 @@ typedef struct	s_all
 	int				c_mv;
 	int				size;
 	int				verif_exe;
-	int				window;
 
 }				t_all;
 
@@ -44,6 +56,7 @@ typedef struct	s_moves
 	char	*type;
 	int		(*move)(t_pile *, t_pile *);
 }				t_moves;
+
 
 int				ft_size(char **argv);
 int				move_sa(t_pile *a, t_pile *b);
@@ -70,4 +83,5 @@ void			ft_affichage_window(int p_hor, int p_ver, t_all *res);
 void			ft_display_a(int i, t_all *res, int p_hor, int p_ver);
 void			ft_display_b(int i, t_all *res, int p_hor, int p_ver);
 int				move_rrr(t_pile *a, t_pile *b);
+int     ft_parsing_argv(char **argv, t_all *res);
 #endif

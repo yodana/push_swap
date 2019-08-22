@@ -53,16 +53,17 @@ t_pile	*init_pile_a(char **numbers, int size)
 	b = -1;
 	if (!(a = (t_pile*)malloc(sizeof(t_pile))))
 		return (NULL);
-	if (!(a->numbers = (int*)malloc(sizeof(int) * size)))
+	if (!(a->numbers = (int*)malloc(sizeof(int) * ft_size(numbers))))
 		return (NULL);
-	if (numbers[1][0] == '-' && numbers[1][1] == 'v')
-		i++;
 	while (numbers[++i])
 	{
 		if (!(new = ft_strsplit(numbers[i], ' ')))
 			return (NULL);
 		while (new[++b])
+		{
 			a->numbers[++j] = ft_atoi(new[b]);
+			size++;
+		}
 		b = -1;
 	}
 	a->size = size;
@@ -73,7 +74,7 @@ int		init(t_all *res, char **numbers, int size)
 {
 	if (size < 0)
 		return (-1);
-	if (!(res->a = init_pile_a(numbers, size)))
+	if (!(res->a = init_pile_a(numbers, 0)))
 		return (-1);
 	if (!(res->b = init_pile_b(size)))
 		return (-1);
@@ -85,7 +86,6 @@ int		init(t_all *res, char **numbers, int size)
 	res->size = size;
 	res->event = NULL;
 	res->delay = 200;
-	res->window = 0;
 	res->max_int = ft_check_max(res->a->numbers, res->a->size);
 	return (1);
 }

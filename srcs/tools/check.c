@@ -68,12 +68,16 @@ int		check_double(t_pile *a)
 		while (j < a->size)
 		{
 			if (a->numbers[i] == a->numbers[j])
+			{
+					//ft_printf("size == %d | %d | %d\n",i, a->numbers[i], a->numbers[j]);
 				return (-1);
+			}
 			j++;
 		}
 		i++;
 		j = i + 1;
 	}
+	//ft_printf("size == %d | %d | %d\n",i, a->numbers[i], a->numbers[j]);
 	return (1);
 }
 
@@ -99,6 +103,7 @@ int		real_check(char **tab)
 		}
 		j = 0;
 		i++;
+		//ft_printf("megalol");
 	}
 	return (1);
 }
@@ -109,16 +114,20 @@ int		check(char **argv)
 	char	**new;
 
 	i = 1;
-	if (argv[1][0] == '-' && argv[1][1] == 'v')
-		i++;
+	//if (argv[1][0] == '-' && argv[1][1] == 'v')
+	//	i++;
 	while (argv[i])
 	{
 		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
 		if (real_check(new) == -1)
+		{
 			return (-1);
+		}
 		ft_strrdel(new);
 		i++;
+		//ft_printf("lol");
 	}
+	//ft_printf("megalol");
 	return (1);
 }

@@ -41,7 +41,7 @@ int		check_move(t_all *res, char *mv)
 			//ft_printf("ce numero bouge   %d     ", res->a->numbers[0]);
 			if (res->verif_exe == 1)
 				ft_printf("%s\n", mv);
-			if (res->window == 1)
+			if (res->commands->v == 1)
 				ft_affichage_window(1920, 1080, res);
 			return (1);
 		}

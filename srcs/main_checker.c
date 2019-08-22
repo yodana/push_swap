@@ -20,7 +20,9 @@ void	ft_error(void)
 void	read_mv(t_all *res)
 {
 	char *mv;
+	int 	c;
 
+	c = 0;
 	while ((mv = ft_get_txt(0)) != NULL)
 	{
 		if (check_move(res, mv) == -1)
@@ -37,13 +39,14 @@ void	read_mv(t_all *res)
 int		main(int argc, char **argv)
 {
 	t_all	res;
-
+	
 	if (argc == 1)
 		return (0);
-	if (init(&res, argv, ft_size(argv)) == -1)
-		return (0);
+	int i = ft_parsing_argv(argv, &res);
 	res.verif_exe = 0;
-	if (check(argv) == -1 || check_double(res.a) == -1)
+	if (init(&res, &argv[i], ft_size(argv)) == -1)
+		return (0);
+	if (check(&argv[i]) == -1 || check_double(res.a) == -1)
 	{
 		ft_error();
 		return (0);
@@ -53,12 +56,13 @@ int		main(int argc, char **argv)
 		ft_printf("OK\n");
 		return (0);
 	}
-	if (argv[1][0] == '-' && argv[1][1] == 'v')
+	if (res.commands->v == 1)
 		init_window(&res);
 	else
 		read_mv(&res);
 	check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
-	ft_printf("mouvement == %d", res.c_mv);
+	if (res.commands->m == 1)
+		ft_printf("Mouvements == %d", res.c_mv);
 	all_free(&res);
 	return (0);
 }

@@ -236,6 +236,17 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 	i = tab_tmp->size;
 	while (++c < i && (check_tab(res->a->numbers, res->a->size) == -1))
 	{
+		if (i == 2)
+		{
+			if (check_tab(tab_tmp->numbers, tab_tmp->size) == 1)
+				break ;
+			else
+			{
+				check_move(res, "sa");
+			}
+			break ;
+			
+		}
 		if (c > pos)
 		{
 			if (check_tab_pivot(res->a, tab_tmp->numbers[pos]) == 1)

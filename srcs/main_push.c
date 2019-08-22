@@ -25,9 +25,9 @@ int		main(int argc, char **argv)
 	mv = 0;
 	if (argc == 1)
 		return (0);
+		res.verif_exe = 1;
 	if (init(&res, argv, ft_size(argv)) == -1)
 		return (0);
-	res.verif_exe = 1;
 	if (check(argv) == -1 || check_double(res.a) == -1)
 	{
 		ft_error();
@@ -40,7 +40,11 @@ int		main(int argc, char **argv)
 		while (check_win(res.a, res.b) == -1 && check_tab(res.a->numbers, res.a->size) == 1)
 			algo_go(&res, 1);
 		while (check_tab(res.a->numbers, res.a->size) == -1)
+		{
+			//ft_printf("coucou");
 			algo_go(&res, 2);
+			//ft_printf(" I quit");
+		}
 	}
 	all_free(&res);
 	//ft_printf("mv == %d", res.c_mv);

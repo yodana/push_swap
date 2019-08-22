@@ -47,6 +47,7 @@ void			ft_error();
 int				check_tab_b(t_pile *target);
 void			algo_minus(t_pile *tmp, t_all *res);
 int				ft_check_max(int *tab, int size);
+int				check_tab_pivot(t_pile *a, int pivot);
 typedef struct	s_algo
 {
 	int		type;

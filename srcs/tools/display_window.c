@@ -23,7 +23,7 @@ void	ft_affichage_window(int p_hor, int p_ver, t_all *res)
 	ft_display_b(res->b->size + 1, res, p_hor, p_ver);
 	SDL_RenderPresent(res->renderer);
 	time = SDL_GetTicks() % 2147483647;
-	while (time % 20)
+	while (time % 2)
 	{
 		time = SDL_GetTicks() % 2147483647;
 		SDL_PollEvent(res->event);
@@ -34,3 +34,4 @@ void	ft_affichage_window(int p_hor, int p_ver, t_all *res)
 		}
 	}
 }
+
