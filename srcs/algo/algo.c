@@ -171,12 +171,15 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	pos = find_pos_pivot(tab_tmp, 0);
 	i = tab_tmp->size;
 	int c_ra = 0;
+	//while (1)
+	//ft_printf("here");
 	while (++c < i)
 	{
 		if (c > pos && check_tab(res->a->numbers, res->a->size - 1) == -1 && check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == 1)
 		{
 			//if (check_)
 			//check_move(res, "rra");
+			//ft_printf("here");
 			break ;
 		}
 		if (res->a->numbers[0] > res->a->numbers[1])
@@ -191,7 +194,7 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pa");
-			if (c == pos)
+			if (res->a->size > 1 && c == pos)
 			{
 				//ft_printf(RED "FDP" END_COLOR);
 				check_move(res, "ra");
@@ -213,7 +216,7 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	//	check_move(res, "sb");
 	//ft_printf("pivot for b == %d\n", tab_tmp->numbers[pos]);
 	algo_end_for_b(tab_tmp, res, c_rb, pos, c_ra);
-	if (c > pos)
+	if (res->a->size > 1 && c > pos)
 		check_move(res, "rra");
 	pile_free(tab_tmp);
 }
@@ -264,7 +267,12 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 			//c > pos ? check_move(res, "sb") : 0;
 		}
 		else 
+		{
+			//ft_printf("lol %d", res->a->size);
 			c_ra = c_ra + check_move(res, "ra");
+			//if (res->a->numbers[0] > res->a->numbers[1])
+			//	check_move(res, "sa");	
+		}
 	}
 	if (res->b->size > 1 && c > pos)
 		check_move(res, "rrb");

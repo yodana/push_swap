@@ -76,14 +76,14 @@ int		init(t_all *res, char **numbers, int size)
 		return (-1);
 	if (!(res->a = init_pile_a(numbers, 0)))
 		return (-1);
-	if (!(res->b = init_pile_b(size)))
+	if (!(res->b = init_pile_b(res->a->size)))
 		return (-1);
-	if (!(res->pa = init_pile_b(size)))
+	if (!(res->pa = init_pile_b(res->a->size)))
 		return (-1);
-	if (!(res->pb = init_pile_b(size)))
+	if (!(res->pb = init_pile_b(res->a->size)))
 		return (-1);
 	res->renderer = NULL;
-	res->size = size;
+	res->size = res->a->size;
 	res->event = NULL;
 	res->delay = 200;
 	res->max_int = ft_check_max(res->a->numbers, res->a->size);

@@ -44,8 +44,8 @@ void	window_go(SDL_Window *pwindow, SDL_Event *event, char *mv, t_all *res)
 	int c;
 	TTF_Font *police;
 	police = NULL;
-	SDL_Surface *texte;
-    SDL_Color couleurNoire = {0, 0, 0, 0};
+//	SDL_Surface *texte;
+  //  SDL_Color couleurNoire = {0, 0, 0, 0};
 	c = 0;
 	if (pwindow)
 	{
@@ -54,10 +54,10 @@ void	window_go(SDL_Window *pwindow, SDL_Event *event, char *mv, t_all *res)
 			ft_affichage_window(1920, 1080, res);
 			c = window_check(event, pwindow, mv, res);
 				/* Chargement de la police */
-    if ((police = TTF_OpenFont("/Users/yodana/Downloads/angelina.TTF", 65)) == NULL)
-		ft_printf("Échec de l'initialisation de la SDL (%s)\n", TTF_GetError());
+    //if ((police = TTF_OpenFont("/Users/yodana/Downloads/angelina.TTF", 65)) == NULL)
+		//ft_printf("Échec de l'initialisation de la SDL (%s)\n", TTF_GetError());
     /* Écriture du texte dans la SDL_Surface texte en mode Blended (optimal) */
-    texte = TTF_RenderText_Blended(police, "Salut les Zér0s !", couleurNoire);
+    //texte = TTF_RenderText_Blended(police, "Salut les Zér0s !", couleurNoire);
 			if (c == 1)
 			{
 				check_win(res->a, res->b) == 1 ?

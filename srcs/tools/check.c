@@ -31,6 +31,7 @@ int		check_tab(int *target, int size)
 	int i;
 
 	i = 0;
+	//ft_printf(RED "%d" END_COLOR,target[0]);
 	while (i + 1 < size)
 	{
 		if (target[i] > target[i + 1])

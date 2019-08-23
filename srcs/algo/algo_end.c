@@ -18,7 +18,7 @@ void	algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos)
 		add_pivot(res->pb, tab_tmp->numbers[pos]);
 	if (c_ra != res->a->size)
 	{
-			if (c_ra < res->a->size / 2 || c_ra == 1)
+			if (c_ra < res->a->size || c_ra <= 1)
 			{
 				while (c_ra != 0)
 				{
@@ -32,14 +32,13 @@ void	algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos)
 			{
 				while (res->a->size - c_ra != 0)
 				{
-					//ft_printf("lol\n");
+					//ft_printf(RED "FDP" END_COLOR);
 					check_move(res, "ra");
 					//if (res->a->numbers[0] > res->a->numbers[1])
 					//	check_move(res, "sa");
 					c_ra++;
 				}
 			}
-			
 	}
 	pile_free(tab_tmp);
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
