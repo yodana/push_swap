@@ -42,22 +42,47 @@ int		window_check(SDL_Event *event, SDL_Window *pwindow, char *mv, t_all *r)
 void	window_go(SDL_Window *pwindow, SDL_Event *event, char *mv, t_all *res)
 {
 	int c;
-	TTF_Font *police;
+	/*TTF_Font *police;
 	police = NULL;
-//	SDL_Surface *texte;
-  //  SDL_Color couleurNoire = {0, 0, 0, 0};
+	SDL_Surface *texte;
+	SDL_Texture *text;
+	SDL_Rect textRec;*/
+	(void)pwindow;
+	(void)event;
+	(void)mv;
+	//SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+      //                   "Missing file",
+        //                 "File is missing. Please reinstall the program.",
+          //               NULL);
+	//SDL_Flip(texte);
+	 //SDL_Surface *pSurf = SDL_GetWindowSurface(pwindow);
+    //SDL_Color couleurNoire = {0, 0, 0, 0};
 	c = 0;
+	/*if ((police = TTF_OpenFont("/Users/yohanndana/Downloads/roboto/Roboto-Black.ttf", 65)) == NULL)
+		ft_printf("Échec de l'initialisation de la SDL (%s)\n", TTF_GetError());
+	SDL_SetRenderDrawColor(res->renderer, 255, 255, 255, 255);
+	SDL_RenderClear(res->renderer);
+    texte = TTF_RenderText_Solid(police, "SALUT FILS DE PUTE", couleurNoire);
+	text = SDL_CreateTextureFromSurface(res->renderer, texte);*/
+	//int w = 100;
+	//int h = 100;
+	//SDL_QueryTexture(text, NULL, NULL, &w, &h);
+	/*textRec.x = 500;
+	textRec.y = 500;
+	textRec.h = 100;
+	textRec.w = 100;
+	SDL_RenderCopy(res->renderer, text, NULL, &textRec);
+	//SDL_RenderClear(res->renderer);
+	SDL_RenderPresent(res->renderer);*/
+	//SDL_FillRect(pSurf, NULL, SDL_MapRGB(pSurf->format, 255, 255, 255));
+	//SDL_BlitSurface(texte, NULL, pSurf, &position);
+	 //SDL_UpdateWindowSurface(pwindow);
 	if (pwindow)
 	{
 		while (1)
 		{
 			ft_affichage_window(1920, 1080, res);
 			c = window_check(event, pwindow, mv, res);
-				/* Chargement de la police */
-    //if ((police = TTF_OpenFont("/Users/yodana/Downloads/angelina.TTF", 65)) == NULL)
-		//ft_printf("Échec de l'initialisation de la SDL (%s)\n", TTF_GetError());
-    /* Écriture du texte dans la SDL_Surface texte en mode Blended (optimal) */
-    //texte = TTF_RenderText_Blended(police, "Salut les Zér0s !", couleurNoire);
 			if (c == 1)
 			{
 				check_win(res->a, res->b) == 1 ?

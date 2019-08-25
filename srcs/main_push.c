@@ -47,6 +47,6 @@ int		main(int argc, char **argv)
 		}
 	}
 	all_free(&res);
-	ft_printf("mv == %d", res.c_mv);
+	//ft_printf("mv == %d", res.c_mv);
 	return (0);
 }
