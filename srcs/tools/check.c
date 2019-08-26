@@ -6,32 +6,17 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 07:05:31 by yodana            #+#    #+#             */
-/*   Updated: 2019/07/22 07:06:05 by yodana           ###   ########.fr       */
+/*   Updated: 2019/08/26 16:45:27 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/checker.h"
-
-int		check_tab_b(t_pile *target)
-{
-	int i;
-
-	i = 0;
-	while (i + 1 < target->size)
-	{
-		if (target->numbers[i] < target->numbers[i + 1])
-			return (-1);
-		i++;
-	}
-	return (1);
-}
 
 int		check_tab(int *target, int size)
 {
 	int i;
 
 	i = 0;
-	//ft_printf(RED "%d" END_COLOR,target[0]);
 	while (i + 1 < size)
 	{
 		if (target[i] > target[i + 1])
@@ -69,16 +54,12 @@ int		check_double(t_pile *a)
 		while (j < a->size)
 		{
 			if (a->numbers[i] == a->numbers[j])
-			{
-					//ft_printf("size == %d | %d | %d\n",i, a->numbers[i], a->numbers[j]);
 				return (-1);
-			}
 			j++;
 		}
 		i++;
 		j = i + 1;
 	}
-	//ft_printf("size == %d | %d | %d\n",i, a->numbers[i], a->numbers[j]);
 	return (1);
 }
 
@@ -104,7 +85,6 @@ int		real_check(char **tab)
 		}
 		j = 0;
 		i++;
-		//ft_printf("megalol");
 	}
 	return (1);
 }
@@ -115,20 +95,14 @@ int		check(char **argv)
 	char	**new;
 
 	i = 1;
-	//if (argv[1][0] == '-' && argv[1][1] == 'v')
-	//	i++;
 	while (argv[i])
 	{
 		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
 		if (real_check(new) == -1)
-		{
 			return (-1);
-		}
 		ft_strrdel(new);
 		i++;
-		//ft_printf("lol");
 	}
-	//ft_printf("megalol");
 	return (1);
 }

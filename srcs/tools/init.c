@@ -40,15 +40,13 @@ t_pile	*init_pile_b(int size)
 	return (b);
 }
 
-t_pile	*init_pile_a(char **numbers, int size)
+t_pile	*init_pile_a(char **numbers, int size, int i)
 {
-	int		i;
 	int		j;
 	t_pile	*a;
 	char	**new;
 	int		b;
 
-	i = 0;
 	j = -1;
 	b = -1;
 	if (!(a = (t_pile*)malloc(sizeof(t_pile))))
@@ -74,7 +72,7 @@ int		init(t_all *res, char **numbers, int size)
 {
 	if (size < 0)
 		return (-1);
-	if (!(res->a = init_pile_a(numbers, 0)))
+	if (!(res->a = init_pile_a(numbers, 0, 0)))
 		return (-1);
 	if (!(res->b = init_pile_b(res->a->size)))
 		return (-1);

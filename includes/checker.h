@@ -16,7 +16,6 @@
 # include "../SDL2/include/SDL2/SDL.h"
 # include "../SDL2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 # define INT_MAX "2147483647"
-# define  B 0
 
 typedef struct	s_pile
 {
@@ -24,7 +23,7 @@ typedef struct	s_pile
 	int size;
 }				t_pile;
 
-typedef struct 	s_argv
+typedef struct	s_argv
 {
 	int v;
 	int c;
@@ -44,7 +43,8 @@ typedef struct	s_all
 	SDL_Event		*event;
 	SDL_Renderer	*renderer;
 	int				max_int;
-	double			delay;
+	int				delay;
+	int				prev_time;
 	int				c_mv;
 	int				size;
 	int				verif_exe;
@@ -57,7 +57,7 @@ typedef struct	s_moves
 	int		(*move)(t_pile *, t_pile *);
 }				t_moves;
 
-
+void			chose_color(int i, t_all *res);
 int				ft_size(char **argv);
 int				move_sa(t_pile *a, t_pile *b);
 int				move_sb(t_pile *a, t_pile *b);
@@ -83,5 +83,5 @@ void			ft_affichage_window(int p_hor, int p_ver, t_all *res);
 void			ft_display_a(int i, t_all *res, int p_hor, int p_ver);
 void			ft_display_b(int i, t_all *res, int p_hor, int p_ver);
 int				move_rrr(t_pile *a, t_pile *b);
-int     ft_parsing_argv(char **argv, t_all *res);
+int				ft_parsing_argv(char **argv, t_all *res);
 #endif

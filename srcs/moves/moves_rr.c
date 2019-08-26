@@ -32,9 +32,9 @@ int		move_rreverse(t_pile *target)
 
 int		move_rrr(t_pile *a, t_pile *b)
 {
-		move_rreverse(b);
-		move_rreverse(a);
-		return (1);
+	move_rreverse(b);
+	move_rreverse(a);
+	return (1);
 }
 
 int		move_rrb(t_pile *a, t_pile *b)

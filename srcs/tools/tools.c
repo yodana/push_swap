@@ -67,12 +67,3 @@ t_pile	*cpy_tab_pile(t_pile *a, t_pile *pa)
 	new->size = i;
 	return (new);
 }
-
-void	add_pivot(t_pile *p, int pivot)
-{
-	int i;
-
-	i = p->size;
-	p->numbers[i] = pivot;
-	p->size = p->size + 1;
-}

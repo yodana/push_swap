@@ -38,7 +38,6 @@ int		check_move(t_all *res, char *mv)
 		{
 			g_moves[i].move(res->a, res->b);
 			res->c_mv = res->c_mv + 1;
-			//ft_printf("ce numero bouge   %d     ", res->a->numbers[0]);
 			if (res->verif_exe == 1)
 				ft_printf("%s\n", mv);
 			return (1);

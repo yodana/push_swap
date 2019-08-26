@@ -19,8 +19,8 @@ void	ft_error(void)
 
 void	read_mv(t_all *res)
 {
-	char *mv;
-	int 	c;
+	char	*mv;
+	int		c;
 
 	c = 0;
 	while ((mv = ft_get_txt(0)) != NULL)
@@ -36,13 +36,25 @@ void	read_mv(t_all *res)
 	}
 }
 
+void	checker_go(t_all *res)
+{
+	if (res->commands->v == 1)
+		init_window(res);
+	else
+		read_mv(res);
+	check_win(res->a, res->b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
+	if (res->commands->m == 1)
+		ft_printf("Mouvements == %d", res->c_mv);
+}
+
 int		main(int argc, char **argv)
 {
 	t_all	res;
-	
+	int		i;
+
 	if (argc == 1)
 		return (0);
-	int i = ft_parsing_argv(argv, &res);
+	i = ft_parsing_argv(argv, &res);
 	res.verif_exe = 0;
 	if (init(&res, &argv[i], ft_size(argv)) == -1)
 		return (0);
@@ -53,16 +65,13 @@ int		main(int argc, char **argv)
 	}
 	if (check_win(res.a, res.b) == 1)
 	{
-		ft_printf("OK\n");
+		if (res.commands->v == 1)
+			init_window(&res);
+		else
+			ft_printf("OK\n");
 		return (0);
 	}
-	if (res.commands->v == 1)
-		init_window(&res);
-	else
-		read_mv(&res);
-	check_win(res.a, res.b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
-	if (res.commands->m == 1)
-		ft_printf("Mouvements == %d", res.c_mv);
+	checker_go(&res);
 	all_free(&res);
 	return (0);
 }

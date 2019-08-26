@@ -38,7 +38,7 @@ void			algo_go3(t_all *res, int *mv);
 void			all_free(t_all *res);
 void			pile_free(t_pile *t);
 void			algo_end_for_a(t_pile *tab_tmp, t_all *res, int c_ra, int pos);
-void			algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos, int c_ra);
+void			algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos);
 void			algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos);
 void			algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos);
 void			algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos);
@@ -48,6 +48,8 @@ int				check_tab_b(t_pile *target);
 void			algo_minus(t_pile *tmp, t_all *res);
 int				ft_check_max(int *tab, int size);
 int				check_tab_pivot(t_pile *a, int pivot);
+int				check_tab_pivot_b(t_pile *a, int pivot);
+int				find_pos_pivot(t_pile *target, int pile);
 typedef struct	s_algo
 {
 	int		type;
